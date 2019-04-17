@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 public class App extends JFrame {
 
@@ -145,5 +146,9 @@ public class App extends JFrame {
 		JComboBox comboBoxAtaque4 = new JComboBox();
 		comboBoxAtaque4.setBounds(357, 104, 74, 20);
 		contentPane.add(comboBoxAtaque4);
+		
+		JButton btnNewButton = new JButton("A\u00F1adir Pokemon");
+		btnNewButton.setBounds(185, 152, 133, 33);
+		contentPane.add(btnNewButton);
 	}
 }
