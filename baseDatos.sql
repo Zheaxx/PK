@@ -1,0 +1,858 @@
+drop database pokemon;
+create database pokemon;
+use pokemon;
+drop table if exists pokedex;
+create table pokedex (clave integer (4),
+numero integer(3),nombre varchar(30),nivel integer(2),ps integer(2),ataque integer(2),defensa integer(2),velocidad integer(2),tipo1 varchar(30),tipo2 varchar(30),notas varchar(100),
+ primary key (clave));
+
+insert into pokedex values (0001,001,'Bulbasaur',01,10,03,04,01,'planta','veneno','');
+insert into pokedex values (0002,001,'Bulbasaur',02,12,03,04,01,'planta','veneno','');
+insert into pokedex values (0003,002,'Ivysaur',03,15,04,05,02,'planta','veneno','');
+insert into pokedex values (0004,002,'Ivysaur',04,17,04,05,03,'planta','veneno','');
+insert into pokedex values (0005,003,'Venusaur',05,20,05,05,04,'planta','veneno','');
+insert into pokedex values (0006,003,'Venusaur',06,23,05,06,04,'planta','veneno','');
+insert into pokedex values (0007,003,'Venusaur',07,26,06,06,04,'planta','veneno','');
+insert into pokedex values (0008,003,'Venusaur',08,30,06,06,05,'planta','veneno','');
+insert into pokedex values (0009,003,'Venusaur',09,34,06,07,05,'planta','veneno','');
+insert into pokedex values (0010,003,'Venusaur',10,35,06,08,05,'planta','veneno','');
+
+insert into pokedex values (0011,004,'Charmander',01,09,04,03,02,'fuego','','');
+insert into pokedex values (0012,004,'Charmander',02,12,04,03,03,'fuego','','');
+insert into pokedex values (0013,005,'Charmeleon',03,15,04,03,03,'fuego','','');
+insert into pokedex values (0014,005,'Charmeleon',04,18,05,04,03,'fuego','','');
+insert into pokedex values (0015,006,'Charizard',05,21,05,05,03,'fuego','volador','');
+insert into pokedex values (0016,006,'Charizard',06,24,06,05,03,'fuego','volador','');
+insert into pokedex values (0017,006,'Charizard',07,28,06,05,04,'fuego','volador','');
+insert into pokedex values (0018,006,'Charizard',08,30,07,06,05,'fuego','volador','');
+insert into pokedex values (0019,006,'Charizard',09,33,07,06,06,'fuego','volador','');
+insert into pokedex values (0020,006,'Charizard',10,36,08,06,07,'fuego','volador','');
+
+insert into pokedex values (0021,007,'Squirtle',01,10,03,04,02,'agua','','');
+insert into pokedex values (0022,007,'Squirtle',02,12,04,04,02,'agua','','');
+insert into pokedex values (0023,008,'Wartortle',03,15,04,05,03,'agua','','');
+insert into pokedex values (0024,008,'Wartortle',04,18,04,05,04,'agua','','');
+insert into pokedex values (0025,009,'Blastoise',05,21,04,05,05,'agua','','');
+insert into pokedex values (0026,009,'Blastoise',06,24,05,05,05,'agua','','');
+insert into pokedex values (0027,009,'Blastoise',07,27,05,06,05,'agua','','');
+insert into pokedex values (0028,009,'Blastoise',08,30,06,06,05,'agua','','');
+insert into pokedex values (0029,009,'Blastoise',09,33,06,07,05,'agua','','');
+insert into pokedex values (0030,009,'Blastoise',10,36,07,08,05,'agua','','');
+
+insert into pokedex values (0031,010,'Caterpie',01,07,02,02,02,'bicho','','');
+insert into pokedex values (0032,011,'Metapod',02,10,02,03,03,'bicho','','');
+insert into pokedex values (0033,012,'Butterfree',03,13,03,03,04,'bicho','volador','');
+insert into pokedex values (0034,012,'Butterfree',04,15,04,03,04,'bicho','volador','');
+insert into pokedex values (0035,012,'Butterfree',05,17,04,03,05,'bicho','volador','');
+insert into pokedex values (0036,012,'Butterfree',06,19,05,03,05,'bicho','volador','');
+insert into pokedex values (0037,012,'Butterfree',07,21,05,04,05,'bicho','volador','');
+insert into pokedex values (0038,012,'Butterfree',08,23,06,04,05,'bicho','volador','');
+insert into pokedex values (0039,012,'Butterfree',09,25,06,04,06,'bicho','volador','');
+insert into pokedex values (0040,012,'Butterfree',10,27,06,05,07,'bicho','volador','');
+
+insert into pokedex values (0041,013,'Weedle',01,07,02,02,02,'bicho','veneno','');
+insert into pokedex values (0042,014,'Kakuna',02,10,02,03,03,'bicho','veneno','');
+insert into pokedex values (0043,015,'Beedrill',03,13,03,03,03,'bicho','veneno','');
+insert into pokedex values (0044,015, 'Beedrill',04,15,04,03,03,'bicho','veneno','');
+insert into pokedex values (0045,015, 'Beedrill',05,17,04,03,04,'bicho','veneno','');
+insert into pokedex values (0046,015, 'Beedrill',06,19,05,03,04,'bicho','veneno','');
+insert into pokedex values (0047,015, 'Beedrill',07,21,05,03,05,'bicho','veneno','');
+insert into pokedex values (0048,015, 'Beedrill',08,23,06,03,06,'bicho','veneno','');
+insert into pokedex values (0049,015, 'Beedrill',09,25,06,04,06,'bicho','veneno','');
+insert into pokedex values (0050,015, 'Beedrill',10,27,06,04,07,'bicho','veneno','');
+
+insert into pokedex values (0051,016,'Pidgey',01,08,03,02,02,'normal','volador','');
+insert into pokedex values (0052,016,'Pidgey',02,10,03,02,03,'normal','volador','');
+insert into pokedex values (0053,017,'Pidgeotto',03,13,03,03,04,'normal','volador','');
+insert into pokedex values (0054,017,'Pidgeotto',04,15,04,03,04,'normal','volador','');
+insert into pokedex values (0055,018,'Pidgeot',05,17,04,03,04,'normal','volador','');
+insert into pokedex values (0056,018,'Pidgeot',06,19,04,04,04,'normal','volador','');
+insert into pokedex values (0057,018,'Pidgeot',07,21,05,04,04,'normal','volador','');
+insert into pokedex values (0058,018,'Pidgeot',08,22,05,04,05,'normal','volador','');
+insert into pokedex values (0059,018,'Pidgeot',09,24,06,04,06,'normal','volador','');
+insert into pokedex values (0060,018,'Pidgeot',10,26,07,04,07,'normal','volador','');
+
+insert into pokedex values (0061,019, 'Rattata',01,06,02,02,03,'normal','','');
+insert into pokedex values (0062,019, 'Rattata',02,08,03,02,03,'normal','','');
+insert into pokedex values (0063,020, 'Raticate',03,11,04,02,03,'normal','','');
+insert into pokedex values (0064, 020, 'Raticate',04,13,04,03,03,'normal','','');
+insert into pokedex values (0065, 020, 'Raticate',05,14,04,04,03,'normal','','');
+insert into pokedex values (0066, 020, 'Raticate',06,16,04,04,04,'normal','','');
+insert into pokedex values (0067, 020, 'Raticate',07,18,05,04,04,'normal','','');
+insert into pokedex values (0068, 020, 'Raticate',08,19,05,04,05,'normal','','');
+insert into pokedex values (0069, 020, 'Raticate',09,21,06,04,05,'normal','','');
+insert into pokedex values (0070, 020, 'Raticate',10,23,06,04,06,'normal','','');
+
+insert into pokedex values (0071, 021, 'Spearow',01,08,03,02,02,'normal','volador','');
+insert into pokedex values (0072, 021, 'Spearow',02,10,03,02,03,'normal','volador','');
+insert into pokedex values (0073, 022, 'Fearow',03,13,04,02,04,'normal','volador','');
+insert into pokedex values (0074, 022, 'Fearow',03,15,05,03,04,'normal','volador','');
+insert into pokedex values (0075, 022, 'Fearow',03,17,05,04,04,'normal','volador','');
+insert into pokedex values (0076, 022, 'Fearow',03,19,06,04,04,'normal','volador','');
+insert into pokedex values (0077,022,'Fearow',07,21,06,04,05,'normal','volador','');
+insert into pokedex values (0078,022,'Fearow',08,23,06,05,06,'normal','volador','');
+insert into pokedex values (0079,022,'Fearow',09,25,07,05,06,'normal','volador','');
+insert into pokedex values (0080,022,'Fearow',10,27,07,05,07,'normal','volador','');
+
+insert into pokedex values (0081,023,'Ekans',01,09,03,02,02,'veneno','','');
+insert into pokedex values (0082,023,'Ekans',02,11,03,02,03,'veneno','','');
+insert into pokedex values (0083,024,'Arbok',03,14,04,02,03,'veneno','','');
+insert into pokedex values (0084,024,'Arbok',04,16,04,02,04,'veneno','','');
+insert into pokedex values (0085,024,'Arbok',05,18,04,03,04,'veneno','','');
+insert into pokedex values (0086,024,'Arbok',06,20,05,03,04,'veneno','','');
+insert into pokedex values (0087,024,'Arbok',07,23,05,03,05,'veneno','','');
+insert into pokedex values (0088,024,'Arbok',08,25,05,04,05,'veneno','','');
+insert into pokedex values (0089,024,'Arbok',09,26,06,04,05,'veneno','','');
+insert into pokedex values (0090,024,'Arbok',10,28,06,04,06,'veneno','','');
+
+insert into pokedex values (0091,025,'Pickachu',01,08,02,01,04,'eléctrico','','');
+insert into pokedex values (0092,025,'Pickachu',02,10,03,01,04,'eléctrico','','');
+insert into pokedex values (0093,025,'Pickachu',03,12,03,02,04,'eléctrico','','Necesita piedra trueno para pasar de nivel y evolucionar');
+insert into pokedex values (0094,026,'Raichu',04,14,04,02,04,'eléctrico','','');
+insert into pokedex values (0095,026,'Raichu',05,16,04,02,05,'eléctrico','','');
+insert into pokedex values (0096,026,'Raichu',06,17,04,03,05,'eléctrico','','');
+insert into pokedex values (0097,026,'Raichu',07,19,04,03,06,'eléctrico','','');
+insert into pokedex values (0098,026,'Raichu',08,21,05,03,06,'eléctrico','','');
+insert into pokedex values (0099,026,'Raichu',09,23,05,03,07,'eléctrico','','');
+insert into pokedex values (0100,026,'Raichu',10,25,06,03,07,'eléctrico','','');
+
+insert into pokedex values (0101,027,'Sandshrew',01,10,03,02,01,'tierra','','');
+insert into pokedex values (0102,027,'Sandshrew',02,11,03,03,01,'tierra','','');
+insert into pokedex values (0103,028,'Sandslash',03,14,03,03,01,'tierra','','');
+insert into pokedex values (0104,028,'Sandslash',04,16,04,03,02,'tierra','','');
+insert into pokedex values (0105,028,'Sandslash',05,18,04,03,03,'tierra','','');
+insert into pokedex values (0106,028,'Sandslash',06,20,04,04,03,'tierra','','');
+insert into pokedex values (0107,028,'Sandslash',07,22,05,04,03,'tierra','','');
+insert into pokedex values (0108,028,'Sandslash',08,24,05,05,03,'tierra','','');
+insert into pokedex values (0109,028,'Sandslash',09,26,06,06,04,'tierra','','');
+insert into pokedex values (0110,028,'Sandslash',10,28,07,07,04,'tierra','','');
+
+insert into pokedex values (0111,029,'Nidoran F',01,10,03,03,01,'veneno','','');
+insert into pokedex values (0112,029,'Nidoran F',02,12,03,04,02,'veneno','','');
+insert into pokedex values (0113,030,'Nidorina',03,15,03,04,03,'veneno','','');
+insert into pokedex values (0114,030,'Nidorina',04,17,04,04,03,'veneno','','');
+insert into pokedex values (0115,030,'Nidorina',05,19,05,04,03,'veneno','','Necesita piedra lunar para pasar de nivel y evolucionar.');
+insert into pokedex values (0116,031,'Nidoqueen',06,22,06,05,04,'veneno','tierra','');
+insert into pokedex values (0117,031,'Nidoqueen',07,25,06,06,04,'veneno','tierra','');
+insert into pokedex values (0118,031,'Nidoqueen',08,28,06,07,04,'veneno','tierra','');
+insert into pokedex values (0119,031,'Nidoqueen',09,30,06,07,05,'veneno','tierra','');
+insert into pokedex values (0120,031,'Nidoqueen',10,33,06,07,06,'veneno','tierra','');
+
+insert into pokedex values (0121,032,'NidoranM',01,10,03,03,02,'veneno','','');
+insert into pokedex values (0122,032,'NidoranM',02,12,04,03,02,'veneno','','');
+insert into pokedex values (0123,033,'Nidorino',03,14,05,03,02,'veneno','','');
+insert into pokedex values (0124,033,'Nidorino',04,16,05,04,02,'veneno','','');
+insert into pokedex values (0125,033,'Nidorino',05,18,05,04,03,'veneno','','Necesita piedra lunar para pasar de nivel y evolucionar.');
+insert into pokedex values (0126,034,'Nidoking',06,20,06,04,04,'veneno','tierra','');
+insert into pokedex values (0127,034,'Nidoking',07,22,07,04,04,'veneno','tierra','');
+insert into pokedex values (0128,034,'Nidoking',08,24,07,04,05,'veneno','tierra','');
+insert into pokedex values (0129,034,'Nidoking',09,26,08,04,06,'veneno','tierra','');
+insert into pokedex values (0130,034,'Nidoking',10,28,08,05,06,'veneno','tierra','');
+
+insert into pokedex values (0131,035,'Clefairy',01,10,02,03,02,'hada','','');
+insert into pokedex values (0132,035,'Clefairy',02,13,02,04,02,'hada','','');
+insert into pokedex values (0133,035,'Clefairy',03,16,02,04,03,'hada','','Necesita piedra lunar para pasar de nivel y evolucionar.');
+insert into pokedex values (0134,036,'Clefable',04,19,03,05,04,'hada','','');
+insert into pokedex values (0135,036,'Clefable',05,23,03,06,04,'hada','','');
+insert into pokedex values (0136,036,'Clefable',06,26,04,06,04,'hada','','');
+insert into pokedex values (0137,036,'Clefable',07,29,05,06,04,'hada','','');
+insert into pokedex values (0138,036,'Clefable',08,32,05,06,05,'hada','','');
+insert into pokedex values (0139,036,'Clefable',09,35,05,07,05,'hada','','');
+insert into pokedex values (0140,036,'Clefable',10,39,05,07,06,'hada','','');
+
+insert into pokedex values (0141,037,'Vulpix',01,10,02,03,03,'fuego','','');
+insert into pokedex values (0142,037,'Vulpix',02,12,02,04,03,'fuego','','');
+insert into pokedex values (0143,037,'Vulpix',03,15,02,04,04,'fuego','','Necesita piedra fuego para pasar de nivel y evolucionar.');
+insert into pokedex values (0144,038,'Ninetales',04,17,03,05,04,'fuego','','');
+insert into pokedex values (0145,038,'Ninetales',05,19,03,05,05,'fuego','','');
+insert into pokedex values (0146,038,'Ninetales',06,22,04,05,05,'fuego','','');
+insert into pokedex values (0147,038,'Ninetales',07,25,04,06,05,'fuego','','');
+insert into pokedex values (0148,038,'Ninetales',08,26,04,06,06,'fuego','','');
+insert into pokedex values (0149,038,'Ninetales',09,28,05,06,06,'fuego','','');
+insert into pokedex values (0150,038,'Ninetales',10,30,06,07,07,'fuego','','');
+
+insert into pokedex values(0151,039,'Jigglypuff',01,15,02,02,02,'normal','hada','');
+insert into pokedex values(0152,039,'Jigglypuff',02,20,03,02,02,'normal','hada','');
+insert into pokedex values(0153,039,'Jigglypuff',03,25,03,03,02,'normal','hada','Necesita piedra lunar para pasar de nivel y evolucionar.');
+insert into pokedex values(0154,040,'Wigglytuff',04,28,03,03,03,'normal','hada','');
+insert into pokedex values(0155,040,'Wigglytuff',05,31,04,03,03,'normal','hada','');
+insert into pokedex values(0156,040,'Wigglytuff',06,35,04,04,04,'normal','hada','');
+insert into pokedex values(0157,040,'Wigglytuff',07,38,05,04,04,'normal','hada','');
+insert into pokedex values(0158,040,'Wigglytuff',08,41,05,05,04,'normal','hada','');
+insert into pokedex values(0159,040,'Wigglytuff',09,46,05,05,05,'normal','hada','');
+insert into pokedex values(0160,040,'Wigglytuff',10,50,06,03,03,'normal','hada','');
+
+insert into pokedex values(0161,041,'Zubat',01,08,02,02,03,'veneno','volador','');
+insert into pokedex values(0162,041,'Zubat',02,10,02,03,03,'veneno','volador','');
+insert into pokedex values(0163,042,'Golbat',03,12,03,03,04,'veneno','volador','');
+insert into pokedex values(0164,042,'Golbat',04,15,03,03,05,'veneno','volador','');
+insert into pokedex values(0165,042,'Golbat',05,17,03,04,05,'veneno','volador','');
+insert into pokedex values(0166,042,'Golbat',06,19,05,04,04,'veneno','volador','');
+insert into pokedex values(0167,042,'Golbat',07,21,05,05,05,'veneno','volador','');
+insert into pokedex values(0168,042,'Golbat',08,22,05,05,06,'veneno','volador','');
+insert into pokedex values(0169,042,'Golbat',09,24,06,05,06,'veneno','volador','');
+insert into pokedex values(0170,042,'Golbat',10,26,06,06,07,'veneno','volador','');
+
+insert into pokedex values(0171,043,'Oddish',01,10,03,03,01,'planta','veneno','');
+insert into pokedex values(0172,043,'Oddish',02,13,03,03,02,'planta','veneno','');
+insert into pokedex values(0173,044,'Gloom',03,16,04,03,02,'planta','veneno','');
+insert into pokedex values(0174,044,'Gloom',04,19,04,04,02,'planta','veneno','');
+insert into pokedex values(0175,044,'Gloom',05,22,05,04,02,'planta','veneno','Necesita piedra hoja para pasar de nivel y evolucionar');
+insert into pokedex values(0176,045,'Vileplume',06,25,05,05,03,'planta','veneno','');
+insert into pokedex values(0177,045,'Vileplume',07,28,06,05,03,'planta','veneno','');
+insert into pokedex values(0178,045,'Vileplume',08,31,06,05,04,'planta','veneno','');
+insert into pokedex values(0179,045,'Vileplume',09,33,07,06,04,'planta','veneno','');
+insert into pokedex values(0180,045,'Vileplume',10,35,07,07,04,'planta','veneno','');
+
+insert into pokedex values(0181,046,'Paras',01,10,03,03,01,'bicho','planta','');
+insert into pokedex values(0182,046,'Paras',02,13,04,03,01,'bicho','planta','');
+insert into pokedex values(0183,046,'Parasect',03,16,04,03,02,'bicho','planta','');
+insert into pokedex values(0184,046,'Parasect',04,18,04,04,02,'bicho','planta','');
+insert into pokedex values(0185,046,'Parasect',05,20,04,05,02,'bicho','planta','');
+insert into pokedex values(0186,047,'Parasect',06,22,05,05,03,'bicho','planta','');
+insert into pokedex values(0187,047,'Parasect',07,24,06,05,03,'bicho','planta','');
+insert into pokedex values(0188,047,'Parasect',08,27,06,06,03,'bicho','planta','');
+insert into pokedex values(0189,047,'Parasect',09,30,07,06,03,'bicho','planta','');
+insert into pokedex values(0190,047,'Parasect',10,32,07,06,04,'bicho','planta','');
+
+insert into pokedex values (0191,048,'Venonat',01,10,03,01,03,'bicho','veneno','');
+insert into pokedex values (0192,048,'Venonat',02,13,03,01,04,'bicho','veneno','');
+insert into pokedex values (0193,048,'Venonat',03,16,03,02,04,'bicho','veneno','');
+insert into pokedex values (0194,049,'Venomoth',04,19,03,02,05,'bicho','veneno','');
+insert into pokedex values (0195,049,'Venomoth',05,22,03,02,06,'bicho','veneno','');
+insert into pokedex values (0196,049,'Venomoth',06,24,04,03,06,'bicho','veneno','');
+insert into pokedex values (0197,049,'Venomoth',07,26,05,03,06,'bicho','veneno','');
+insert into pokedex values (0198,049,'Venomoth',08,28,06,04,07,'bicho','veneno','');
+insert into pokedex values (0199,049,'Venomoth',09,31,06,05,07,'bicho','veneno','');
+insert into pokedex values (0200,049,'Venomoth',10,34,07,05,07,'bicho','veneno','');
+
+insert into pokedex values (0201,050,'Diglett',01,07,03,01,03,'tierra','','');
+insert into pokedex values (0202,050,'Diglett',02,09,04,01,03,'tierra','','');
+insert into pokedex values (0203,050,'Diglett',03,12,04,02,03,'tierra','','');
+insert into pokedex values (0204,051,'Dugtrio',04,15,04,02,04,'tierra','','');
+insert into pokedex values (0205,051,'Dugtrio',05,17,05,03,05,'tierra','','');
+insert into pokedex values (0206,051,'Dugtrio',06,19,05,03,06,'tierra','','');
+insert into pokedex values (0207,051,'Dugtrio',07,21,05,04,07,'tierra','','');
+insert into pokedex values (0208,051,'Dugtrio',08,23,06,04,07,'tierra','','');
+insert into pokedex values (0209,051,'Dugtrio',09,25,06,04,08,'tierra','','');
+insert into pokedex values (0210,051,'Dugtrio',10,27,07,04,08,'tierra','','');
+
+insert into pokedex values (0211,052,'Meowth',01,10,02,01,03,'normal','','');
+insert into pokedex values (0212,052,'Meowth',02,13,02,02,04,'normal','','');
+insert into pokedex values (0213,052,'Meowth',03,16,03,03,04,'normal','','');
+insert into pokedex values (0214,053,'Persian',04,19,04,04,04,'normal','','');
+insert into pokedex values (0215,053,'Persian',05,21,04,05,04,'normal','','');
+insert into pokedex values (0216,053,'Persian',06,25,04,05,05,'normal','','');
+insert into pokedex values (0217,053,'Persian',07,26,04,05,06,'normal','','');
+insert into pokedex values (0218,053,'Persian',08,28,05,05,06,'normal','','');
+insert into pokedex values (0219,053,'Persian',09,30,05,05,07,'normal','','');
+insert into pokedex values (0220,053,'Persian',10,33,06,05,08,'normal','','');
+
+insert into pokedex values (0221,054,'Psyduck',01,10,03,03,02,'agua','','');
+insert into pokedex values (0222,054,'Psyduck',02,13,03,04,03,'agua','','');
+insert into pokedex values (0223,054,'Psyduck',03,16,04,04,03,'agua','','');
+insert into pokedex values (0224,055,'Golduck',04,19,05,04,04,'agua','','');
+insert into pokedex values (0225,055,'Golduck',05,22,05,05,04,'agua','','');
+insert into pokedex values (0226,055,'Golduck',06,25,05,05,05,'agua','','');
+insert into pokedex values (0227,055,'Golduck',07,28,06,05,05,'agua','','');
+insert into pokedex values (0228,055,'Golduck',08,30,06,06,05,'agua','','');
+insert into pokedex values (0229,055,'Golduck',09,33,06,06,06,'agua','','');
+insert into pokedex values (0230,055,'Golduck',10,36,07,06,06,'agua','','');
+
+insert into pokedex values (0231,056,'Mankey',01,10,04,01,02,'lucha','','');
+insert into pokedex values (0232,056,'Mankey',02,12,04,01,03,'lucha','','');
+insert into pokedex values (0233,056,'Mankey',03,13,04,01,04,'lucha','','');
+insert into pokedex values (0234,057,'Primeape',04,16,05,02,04,'lucha','','');
+insert into pokedex values (0235,057,'Primeape',05,19,05,03,04,'lucha','','');
+insert into pokedex values (0236,057,'Primeape',06,21,05,04,04,'lucha','','');
+insert into pokedex values (0237,057,'Primeape',07,24,05,05,05,'lucha','','');
+insert into pokedex values (0238,057,'Primeape',08,27,06,05,05,'lucha','','');
+insert into pokedex values (0239,057,'Primeape',09,30,06,05,06,'lucha','','');
+insert into pokedex values (0240,057,'Primeape',10,33,07,05,07,'lucha','','');
+
+insert into pokedex values (0241,058,'Growlithe',01,12,03,02,03,'fuego','','');
+insert into pokedex values (0242,058,'Growlithe',02,15,03,02,04,'fuego','','');
+insert into pokedex values (0243,058,'Growlithe',03,18,04,02,04,'fuego','','Necesita piedra fuego para pasar de nivel y evolucionar.');
+insert into pokedex values (0244,059,'Arcanine',04,21,05,03,05,'fuego','','');
+insert into pokedex values (0245,059,'Arcanine',05,24,05,04,05,'fuego','','');
+insert into pokedex values (0246,059,'Arcanine',06,27,06,04,05,'fuego','','');
+insert into pokedex values (0247,059,'Arcanine',07,30,06,04,06,'fuego','','');
+insert into pokedex values (0248,059,'Arcanine',08,33,07,05,06,'fuego','','');
+insert into pokedex values (0249,059,'Arcanine',09,36,07,06,06,'fuego','','');
+insert into pokedex values (0250,059,'Arcanine',10,38,08,06,07,'fuego','','');
+
+insert into pokedex values (0251,060,'Poliwag',01,13,03,03,02,'agua','','');
+insert into pokedex values (0252,060,'Poliwag',02,17,04,03,02,'agua','','');
+insert into pokedex values (0253,061,'Poliwhirl',03,20,04,04,02,'agua','','');
+insert into pokedex values (0254,061,'Poliwhirl',04,23,04,04,03,'agua','','');
+insert into pokedex values (0255,061,'Poliwhirl',05,26,05,05,03,'agua','','Necesita piedra agua para pasar de nivel y evolucionar.');
+insert into pokedex values (0256,062,'Poliwrath',06,29,05,05,04,'agua','lucha','');
+insert into pokedex values (0257,062,'Poliwrath',07,32,06,05,04,'agua','lucha','');
+insert into pokedex values (0258,062,'Poliwrath',08,34,06,06,05,'agua','lucha','');
+insert into pokedex values (0259,062,'Poliwrath',09,36,06,07,06,'agua','lucha','');
+insert into pokedex values (0260,062,'Poliwrath',10,38,07,08,06,'agua','lucha','');
+
+insert into pokedex values (0261,063, 'Abra',01,08,04,02,03,'psíquico','','');
+insert into pokedex values (0262,063, 'Abra',02,10,04,03,04,'psíquico','','');
+insert into pokedex values (0263,064, 'Kadabra',03,13,04,04,04,'psíquico','','');
+insert into pokedex values (0264,064, 'Kadabra',04,15,05,04,04,'psíquico','',' Solo puede pasar de nivel y evolucionar con intercambio.');
+insert into pokedex values (0265,065, 'Alakazam',05,19,05,04,05,'psíquico','','');
+insert into pokedex values (0266,065, 'Alakazam',06,21,05,05,05,'psíquico','','');
+insert into pokedex values (0267,065, 'Alakazam',07,24,06,06,05,'psíquico','','');
+insert into pokedex values (0268,065, 'Alakazam',08,27,07,06,06,'psíquico','','');
+insert into pokedex values (0269,065, 'Alakazam',09,29,08,06,07,'psíquico','','');
+insert into pokedex values (0270,065, 'Alakazam',10,31,09,06,07,'psíquico','','');
+
+insert into pokedex values (0271,066, 'Machop',01,10,03,03,02,'lucha','','');
+insert into pokedex values (0272,066, 'Machop',02,14,04,04,02,'lucha','','');
+insert into pokedex values (0273,066, 'Machop',03,18,05,04,03,'lucha','','');
+insert into pokedex values (0274,067, 'Machoke',04,22,05,05,04,'lucha','','');
+insert into pokedex values (0275,067, 'Machoke',05,25,06,05,05,'lucha','',' Solo puede pasar de nivel y evolucionar con intercambio.');
+insert into pokedex values (0276,068, 'Machamp',06,27,06,06,05,'lucha','','');
+insert into pokedex values (0277,068, 'Machamp',07,29,06,06,06,'lucha','','');
+insert into pokedex values (0278,068, 'Machamp',08,32,07,06,06,'lucha','','');
+insert into pokedex values (0279,068, 'Machamp',09,35,07,07,06,'lucha','','');
+insert into pokedex values (0280,068, 'Machamp',10,38,08,07,06,'lucha','','');
+
+insert into pokedex values (0281,069, 'Bellsprout',01,09,03,02,02,'planta','veneno','');
+insert into pokedex values (0282,069, 'Bellsprout',02,11,03,02,03,'planta','veneno','');
+insert into pokedex values (0283,070, 'Weepinbell',03,13,04,02,03,'planta','veneno','');
+insert into pokedex values (0284,070, 'Weepinbell',04,17,05,02,03,'planta','veneno','');
+insert into pokedex values (0285,070, 'Weepinbell',05,20,06,02,03,'planta','veneno','Necesita piedra hoja para pasar de nivel y evolucionar.');
+insert into pokedex values (0286,071, 'Victreebel',06,23,06,03,03,'planta','veneno','');
+insert into pokedex values (0287,071, 'Victreebel',07,27,06,03,04,'planta','veneno','');
+insert into pokedex values (0288,071, 'Victreebel',08,30,06,04,05,'planta','veneno','');
+insert into pokedex values (0289,071, 'Victreebel',09,34,06,05,05,'planta','veneno','');
+insert into pokedex values (0290,071, 'Victreebel',10,36,07,05,06,'planta','veneno','');
+
+insert into pokedex values (0291,072,'Tentacool',01,10,03,04,03,'agua','veneno','');
+insert into pokedex values (0292,072,'Tentacool',02,11,04,04,03,'agua','veneno','');
+insert into pokedex values (0293,072,'Tentacool',03,13,04,04,04,'agua','veneno','');
+insert into pokedex values (0294,073,'Tentacruel',04,15,05,04,05,'agua','veneno','');
+insert into pokedex values (0295,073,'Tentacruel',05,18,05,05,05,'agua','veneno','');
+insert into pokedex values (0296,073,'Tentacruel',06,21,05,05,06,'agua','veneno','');
+insert into pokedex values (0297,073,'Tentacruel',07,25,05,06,06,'agua','veneno','');
+insert into pokedex values (0298,073,'Tentacruel',08,29,06,06,06,'agua','veneno','');
+insert into pokedex values (0299,073,'Tentacruel',09,33,06,07,07,'agua','veneno','');
+insert into pokedex values (0300,073,'Tentacruel',10,36,06,08,07,'agua','veneno','');
+
+insert into pokedex values (0301,074,'Geodude',01,10,03,04,02,'roca','tierra','');
+insert into pokedex values (0302,074,'Geodude',02,12,03,04,03,'roca','tierra','');
+insert into pokedex values (0303,075,'Graveler',03,15,04,05,03,'roca','tierra','');
+insert into pokedex values (0304,075,'Graveler',04,18,04,05,04,'roca','tierra','');
+insert into pokedex values (0305,075,'Graveler',05,22,05,05,04,'roca','tierra','Solo puede pasar de nivel y evolucionar con intercambio.');
+insert into pokedex values (0306,076,'Golem',06,25,05,06,05,'roca','tierra','');
+insert into pokedex values (0307,076,'Golem',07,28,06,06,05,'roca','tierra','');
+insert into pokedex values (0308,076,'Golem',08,31,06,07,05,'roca','tierra','');
+insert into pokedex values (0309,076,'Golem',09,31,06,08,05,'roca','tierra','');
+insert into pokedex values (0310,076,'Golem',10,36,07,09,05,'roca','tierra','');
+
+insert into pokedex values (0311,077,'Ponyta',01,10,04,02,03,'fuego','','');
+insert into pokedex values (0312,077,'Ponyta',02,12,04,02,04,'fuego','','');
+insert into pokedex values (0313,077,'Ponyta',03,14,04,03,04,'fuego','','');
+insert into pokedex values (0314,077,'Ponyta',04,17,05,03,05,'fuego','','');
+insert into pokedex values (0315,078,'Rapidash',05,19,05,04,05,'fuego','','');
+insert into pokedex values (0316,078,'Rapidash',06,21,05,04,06,'fuego','','');
+insert into pokedex values (0317,078,'Rapidash',07,24,06,04,06,'fuego','','');
+insert into pokedex values (0318,078,'Rapidash',08,27,06,05,06,'fuego','','');
+insert into pokedex values (0319,078,'Rapidash',09,30,06,05,07,'fuego','','');
+insert into pokedex values (0320,078,'Rapidash',10,33,07,06,07,'fuego','','');
+
+insert into pokedex values (0321,079,'Slowpoke',01,10,02,04,01,'agua','psíquico','');
+insert into pokedex values (0322,079,'Slowpoke',02,14,03,04,02,'agua','psíquico','');
+insert into pokedex values (0323,079,'Slowpoke',03,18,04,04,03,'agua','psíquico','');
+insert into pokedex values (0324,079,'Slowpoke',04,21,04,05,03,'agua','psíquico','');
+insert into pokedex values (0325,080,'Slowbro',05,23,04,05,04,'agua','psíquico','');
+insert into pokedex values (0326,080,'Slowbro',06,26,04,06,04,'agua','psíquico','');
+insert into pokedex values (0327,080,'Slowbro',07,28,04,06,04,'agua','psíquico','');
+insert into pokedex values (0328,080,'Slowbro',08,31,05,06,04,'agua','psíquico','');
+insert into pokedex values (0329,080,'Slowbro',09,35,06,07,05,'agua','psíquico','');
+insert into pokedex values (0330,080,'Slowbro',10,39,06,08,05,'agua','psíquico','');
+
+insert into pokedex values (0331,081,'Magnemite',01,08,03,03,02,'eléctrico','','');
+insert into pokedex values (0332,081,'Magnemite',02,10,04,03,02,'eléctrico','','');
+insert into pokedex values (0333,081,'Magnemite',03,12,04,03,03,'eléctrico','','');
+insert into pokedex values (0334,082,'Magneton',04,15,05,04,04,'eléctrico','','');
+insert into pokedex values (0335,082,'Magneton',05,17,06,05,05,'eléctrico','','');
+insert into pokedex values (0336,082,'Magneton',06,19,06,05,06,'eléctrico','','');
+insert into pokedex values (0337,082,'Magneton',07,21,06,06,06,'eléctrico','','');
+insert into pokedex values (0338,082,'Magneton',08,24,06,07,06,'eléctrico','','');
+insert into pokedex values (0339,082,'Magneton',09,27,07,07,06,'eléctrico','','');
+insert into pokedex values (0340,082,'Magneton',11,30,08,07,06,'eléctrico','','');
+
+insert into pokedex values (0341,083,'Farfetch´d',01,10,03,02,02,'normal','volador','');
+insert into pokedex values (0342,083,'Farfetch´d',02,13,03,03,02,'normal','volador','');
+insert into pokedex values (0343,083,'Farfetch´d',03,15,04,03,02,'normal','volador','');
+insert into pokedex values (0344,083,'Farfetch´d',04,17,04,03,03,'normal','volador','');
+insert into pokedex values (0345,083,'Farfetch´d',05,19,04,04,04,'normal','volador','');
+insert into pokedex values (0346,083,'Farfetch´d',06,21,05,04,04,'normal','volador','');
+insert into pokedex values (0347,083,'Farfetch´d',07,23,05,04,05,'normal','volador','');
+insert into pokedex values (0348,083,'Farfetch´d',08,25,05,05,05,'normal','volador','');
+insert into pokedex values (0349,083,'Farfetch´d',09,27,06,05,05,'normal','volador','');
+insert into pokedex values (0350,083,'Farfetch´d',10,30,07,05,05,'normal','volador','');
+
+insert into pokedex values (0351,084,'Doduo',01,10,03,01,02,'normal','volador','');
+insert into pokedex values (0352,084,'Doduo',02,11,03,02,03,'normal','volador','');
+insert into pokedex values (0353,084,'Doduo',03,12,04,02,03,'normal','volador','');
+insert into pokedex values (0354,085,'Dodrio',04,14,05,03,04,'normal','volador','');
+insert into pokedex values (0355,085,'Dodrio',05,16,05,04,05,'normal','volador','');
+insert into pokedex values (0356,085,'Dodrio',06,18,05,05,05,'normal','volador','');
+insert into pokedex values (0357,085,'Dodrio',07,23,06,05,05,'normal','volador','');
+insert into pokedex values (0358,085,'Dodrio',08,26,06,05,06,'normal','volador','');
+insert into pokedex values (0359,085,'Dodrio',09,29,06,05,07,'normal','volador','');
+insert into pokedex values (0360,085,'Dodrio',10,32,07,05,07,'normal','volador','');
+
+insert into pokedex values (0361,086,'Seel',01 ,12,02,03,03,'agua','','');
+insert into pokedex values (0362,086,'Seel',02 ,16,02 ,04,03,'agua','','');
+insert into pokedex values (0363,086,'Seel',03 ,19,03,04,04,'agua','','');
+insert into pokedex values (0364,087,'Dewgong',04,21,03,05,04,'agua','hielo','');
+insert into pokedex values (0365,087,'Dewgong',05,24,04,05,04,'agua','hielo','');
+insert into pokedex values (0366,087,'Dewgong',06,27,04,05,06,'agua','hielo','');
+insert into pokedex values (0367,087,'Dewgong',07,30,05,05,05,'agua','hielo','');
+insert into pokedex values (0368,087,'Dewgong',08,32,05,06,05,'agua','hielo','');
+insert into pokedex values (0369,087,'Dewgong',09,35,05,06,06,'agua','hielo','');
+insert into pokedex values (0370,087,'Dewgong',10,38,05,07,06,'agua','hielo','');
+
+insert into pokedex values (0371,088,'Grimer',01,10,03,03,02,'veneno','','');
+insert into pokedex values (0372,088,'Grimer',02,14,04,04,03,'veneno','','');
+insert into pokedex values (0373,088,'Grimer',03,18,05,04,03,'veneno','','');
+insert into pokedex values (0374,088,'Grimer',04,21,05,04,04,'veneno','','');
+insert into pokedex values (0375,089,'Muk',05,25,05,05,04,'veneno','','');
+insert into pokedex values (0376,089,'Muk',06,29,06,05,04,'veneno','','');
+insert into pokedex values (0377,089,'Muk',07,31,06,06,04,'veneno','','');
+insert into pokedex values (0378,089,'Muk',08,35,07,06,04,'veneno','','');
+insert into pokedex values (0379,089,'Muk',09,38,07,06,05,'veneno','','');
+insert into pokedex values (0380,089,'Muk',10,41,07,07,05,'veneno','','');
+
+insert into pokedex values (0381,090,'Shellder',01,09,02,03,02,'agua','','');
+insert into pokedex values (0382,090,'Shellder',02,11,03,03,03,'agua','','');
+insert into pokedex values (0383,090,'Shellder',03,13,04,04,04,'agua','','');
+insert into pokedex values (0384,091,'Cloyster',04,15,04,05,04,'agua','hielo','');
+insert into pokedex values (0385,091,'Cloyster',05,17,05,06,04,'agua','hielo','');
+insert into pokedex values (0386,091,'Cloyster',06,19,05,07,04,'agua','hielo','');
+insert into pokedex values (0387,091,'Cloyster',07,21,06,08,04,'agua','hielo','');
+insert into pokedex values (0388,091,'Cloyster',08,25,06,09,04,'agua','hielo','');
+insert into pokedex values (0389,091,'Cloyster',09,28,06,10,05,'agua','hielo','');
+insert into pokedex values (0390,091,'Cloyster',10,30,07,10,05,'agua','hielo','');
+
+insert into pokedex values (0391,092,'Gastly',01,10,03,02,03,'fantasma','veneno','');
+insert into pokedex values (0392,092,'Gastly',02,12,04,03,04,'fantasma','veneno','');
+insert into pokedex values (0393,093,'Haunter',03,14,04,03,05,'fantasma','veneno','');
+insert into pokedex values (0394,093,'Haunter',04,16,05,03,05,'fantasma','veneno','');
+insert into pokedex values (0395,093,'Haunter',05,18,05,04,05,'fantasma','veneno',' Solo puede pasar de nivel y evolucionar con intercambio.');
+insert into pokedex values (0396,094,'Gengar',06,20,06,05,06,'fantasma','veneno','');
+insert into pokedex values (0397,094,'Gengar',07,23,06,05,07,'fantasma','veneno','');
+insert into pokedex values (0398,094,'Gengar',08,26,07,05,07,'fantasma','veneno','');
+insert into pokedex values (0399,094,'Gengar',09,29,07,05,08,'fantasma','veneno','');
+insert into pokedex values (0400,094,'Gengar',10,32,08,05,08,'fantasma','veneno','');
+
+insert into pokedex values (0401,095,'Onix',01,10,03,04,02,'roca','tierra','');
+insert into pokedex values (0402,095,'Onix',02,11,04,05,03,'roca','tierra','');
+insert into pokedex values (0403,095,'Onix',03,13,04,05,03,'roca','tierra','');
+insert into pokedex values (0404,095,'Onix',04,15,04,06,04,'roca','tierra','');
+insert into pokedex values (0405,095,'Onix',05,17,05,06,04,'roca','tierra','');
+insert into pokedex values (0406,095,'Onix',06,19,05,06,05,'roca','tierra','');
+insert into pokedex values (0407,095,'Onix',07,21,05,06,06,'roca','tierra','');
+insert into pokedex values (0408,095,'Onix',08,23,06,06,06,'roca','tierra','');
+insert into pokedex values (0409,095,'Onix',09,25,06,07,06,'roca','tierra','');
+insert into pokedex values (0410,095,'Onix',10,27,06,08,06,'roca','tierra','');
+
+insert into pokedex values (0411,096,'Drowzee',01,11,02,04,03,'psíquico','','');
+insert into pokedex values (0412,096,'Drowzee',02,14,02,04,04,'psíquico','','');
+insert into pokedex values (0413,096,'Drowzee',03,17,03,04,04,'psíquico','','');
+insert into pokedex values (0414,097,'Hypno',04,20,03,05,04,'psíquico','','');
+insert into pokedex values (0415,097,'Hypno',05,23,04,05,04,'psíquico','','');
+insert into pokedex values (0416,097,'Hypno',06,25,05,05,04,'psíquico','','');
+insert into pokedex values (0417,097,'Hypno',07,28,05,06,04,'psíquico','','');
+insert into pokedex values (0418,097,'Hypno',08,31,05,06,05,'psíquico','','');
+insert into pokedex values (0419,097,'Hypno',09,34,06,06,05,'psíquico','','');
+insert into pokedex values (0420,097,'Hypno',10,37,06,07,05,'psíquico','','');
+
+insert into pokedex values (0421,098,'Crabby',01,10,03,02,02,'agua','','');
+insert into pokedex values (0422,098,'Crabby',02,13,03,03,03,'agua','','');
+insert into pokedex values (0423,098,'Crabby',03,15,03,04,04,'agua','','');
+insert into pokedex values (0424,099,'Kingler',04,18,03,04,05,'agua','','');
+insert into pokedex values (0425,099,'Kingler',05,21,04,05,05,'agua','','');
+insert into pokedex values (0426,099,'Kingler',06,23,05,06,05,'agua','','');
+insert into pokedex values (0427,099,'Kingler',07,25,06,06,05,'agua','','');
+insert into pokedex values (0428,099,'Kingler',08,26,07,07,05,'agua','','');
+insert into pokedex values (0429,099,'Kingler',09,28,08,07,05,'agua','','');
+insert into pokedex values (0430,099,'Kingler',10,31,09,07,05,'agua','','');
+
+insert into pokedex values (0431,100,'Voltorb',01,10,02,03,04,'eléctrico','','');
+insert into pokedex values (0432,100,'Voltorb',02,13,03,04,04,'eléctrico','','');
+insert into pokedex values (0433,100,'Voltorb',03,16,03,05,04,'eléctrico','','');
+insert into pokedex values (0434,101,'Electrode',04,19,04,05,05,'eléctrico','','');
+insert into pokedex values (0435,101,'Electrode',05,21,05,05,06,'eléctrico','','');
+insert into pokedex values (0436,101,'Electrode',06,23,05,05,07,'eléctrico','','');
+insert into pokedex values (0437,101,'Electrode',07,25,06,05,07,'eléctrico','','');
+insert into pokedex values (0438,101,'Electrode',08,27,06,05,08,'eléctrico','','');
+insert into pokedex values (0439,101,'Electrode',09,29,06,05,09,'eléctrico','','');
+insert into pokedex values (0440,101,'Electrode',10,32,06,05,10,'eléctrico','','');
+
+insert into pokedex values (0441,102,'Exeggcute',01,11,04,03,03,'planta','psíquico','');
+insert into pokedex values (0442,102,'Exeggcute',02,14,05,03,03,'planta','psíquico','');
+insert into pokedex values (0443,102,'Exeggcute',03,18,05,04,03,'planta','psíquico','');
+insert into pokedex values (0444,103,'Exeggutor',04,21,05,04,04,'planta','psíquico','Necesita piedra hoja para pasar de nivel y evolucionar.');
+insert into pokedex values (0445,103,'Exeggutor',05,24,05,05,04,'planta','psíquico','');
+insert into pokedex values (0446,103,'Exeggutor',06,27,06,05,04,'planta','psíquico','');
+insert into pokedex values (0447,103,'Exeggutor',07,30,06,06,04,'planta','psíquico','');
+insert into pokedex values (0448,103,'Exeggutor',08,33,06,07,05,'planta','psíquico','');
+insert into pokedex values (0449,103,'Exeggutor',09,36,07,07,05,'planta','psíquico','');
+insert into pokedex values (0450,103,'Exeggutor',10,39,08,07,05,'planta','psíquico','');
+
+insert into pokedex values (0451,104,'Cubone',01,08,03,04,02,'tierra','','');
+insert into pokedex values (0452,104,'Cubone',02,10,03,04,03,'tierra','','');
+insert into pokedex values (0453,104,'Cubone',03,12,04,04,04,'tierra','','');
+insert into pokedex values (0454,105,'Marowak',04,15,05,04,04,'tierra','','');
+insert into pokedex values (0455,105,'Marowak',05,18,05,05,04,'tierra','','');
+insert into pokedex values (0456,105,'Marowak',06,21,05,05,05,'tierra','','');
+insert into pokedex values (0457,105,'Marowak',07,24,05,06,05,'tierra','','');
+insert into pokedex values (0458,105,'Marowak',08,26,06,06,05,'tierra','','');
+insert into pokedex values (0459,105,'Marowak',09,29,06,07,05,'tierra','','');
+insert into pokedex values (0460,105,'Marowak',10,32,06,08,05,'tierra','','');
+
+insert into pokedex values (0461,106,'Hitmonlee',01,09,04,03,03,'lucha','','');
+insert into pokedex values (0462,106,'Hitmonlee',02,11,04,02,03,'lucha','','');
+insert into pokedex values (0463,106,'Hitmonlee',03,13,04,03,04,'lucha','','');
+insert into pokedex values (0464,106,'Hitmonlee',04,15,05,04,05,'lucha','','');
+insert into pokedex values (0465,106,'Hitmonlee',05,18,06,04,05,'lucha','','');
+insert into pokedex values (0466,106,'Hitmonlee',06,21,07,04,05,'lucha','','');
+insert into pokedex values (0467,106,'Hitmonlee',07,23,07,04,06,'lucha','','');
+insert into pokedex values (0468,106,'Hitmonlee',08,25,08,04,06,'lucha','','');
+insert into pokedex values (0469,106,'Hitmonlee',09,27,08,04,07,'lucha','','');
+insert into pokedex values (0470,106,'Hitmonlee',10,30,08,05,07,'lucha','','');
+
+insert into pokedex values (0471,107,'Hitmonchan',01,10,03,04,02,'lucha','','');
+insert into pokedex values (0472,107,'Hitmonchan',02,13,04,05,03,'lucha','','');
+insert into pokedex values (0473,107,'Hitmonchan',03,15,04,05,04,'lucha','','');
+insert into pokedex values (0474,107,'Hitmonchan',04,17,04,05,05,'lucha','','');
+insert into pokedex values (0475,107,'Hitmonchan',05,20,05,05,05,'lucha','','');
+insert into pokedex values (0476,107,'Hitmonchan',06,22,05,06,06,'lucha','','');
+insert into pokedex values (0477,107,'Hitmonchan',07,24,05,07,06,'lucha','','');
+insert into pokedex values (0478,107,'Hitmonchan',08,26,05,07,06,'lucha','','');
+insert into pokedex values (0479,107,'Hitmonchan',09,28,05,08,06,'lucha','','');
+insert into pokedex values (0480,107,'Hitmonchan',10,30,06,08,06,'lucha','','');
+
+insert into pokedex values (0481,108,'Lickitung',01,14,02,03,01,'normal','','');
+insert into pokedex values (0482,108,'Lickitung',02,16,02,03,02,'normal','','');
+insert into pokedex values (0483,108,'Lickitung',03,20,03,03,02,'normal','','');
+insert into pokedex values (0484,108,'Lickitung',04,23,03,04,02,'normal','','');
+insert into pokedex values (0485,108,'Lickitung',05,26,04,04,02,'normal','','');
+insert into pokedex values (0486,108,'Lickitung',06,29,04,04,03,'normal','','');
+insert into pokedex values (0487,108,'Lickitung',07,31,04,05,04,'normal','','');
+insert into pokedex values (0488,108,'Lickitung',08,34,05,05,04,'normal','','');
+insert into pokedex values (0489,108,'Lickitung',09,36,05,06,04,'normal','','');
+insert into pokedex values (0490,108,'Lickitung',10,38,06,06,04,'normal','','');
+
+insert into pokedex values (0491,109,'Koffing',01,08,03,04,03,'veneno','','');
+insert into pokedex values (0492,109,'Koffing',02,10,03,05,03,'veneno','','');
+insert into pokedex values (0493,109,'Koffing',03,12,03,05,04,'veneno','','');
+insert into pokedex values (0494,110,'Weezing',04,15,04,05,04,'veneno','','');
+insert into pokedex values (0495,110,'Weezing',05,18,04,05,05,'veneno','','');
+insert into pokedex values (0496,110,'Weezing',06,21,05,05,05,'veneno','','');
+insert into pokedex values (0497,110,'Weezing',07,24,06,05,05,'veneno','','');
+insert into pokedex values (0498,110,'Weezing',08,27,06,06,05,'veneno','','');
+insert into pokedex values (0499,110,'Weezing',09,30,06,07,05,'veneno','','');
+insert into pokedex values (0500,110,'Weezing',10,33,06,08,05,'veneno','','');
+
+insert into pokedex values (0501,111,'Rhyhorn',01,14,04,03,02,'tierra','roca','');
+insert into pokedex values (0502,111,'Rhyhorn',02,17,04,04,02,'tierra','roca','');
+insert into pokedex values (0503,111,'Rhyhorn',03,20,05,05,03,'tierra','roca','');
+insert into pokedex values (0504,111,'Rhyhorn',04,23,06,05,03,'tierra','roca','');
+insert into pokedex values (0505,112,'Rhydon',05,26,06,05,04,'tierra','roca','');
+insert into pokedex values (0506,112,'Rhydon',06,30,07,05,04,'tierra','roca','');
+insert into pokedex values (0507,112,'Rhydon',07,33,07,05,05,'tierra','roca','');
+insert into pokedex values (0508,112,'Rhydon',08,36,07,06,05,'tierra','roca','');
+insert into pokedex values (0509,112,'Rhydon',09,39,08,06,05,'tierra','roca','');
+insert into pokedex values (0510,112,'Rhydon',10,41,08,07,05,'tierra','roca','');
+
+insert into pokedex values (0511,113,'Chansey',01,25,01,03,02,'normal','','');
+insert into pokedex values (0512,113,'Chansey',02,30,01,03,03,'normal','','');
+insert into pokedex values (0513,113,'Chansey',03,35,02,03,03,'normal','','');
+insert into pokedex values (0514,113,'Chansey',04,40,03,03,03,'normal','','');
+insert into pokedex values (0515,113,'Chansey',05,45,03,03,04,'normal','','');
+insert into pokedex values (0516,113,'Chansey',06,50,04,03,05,'normal','','');
+insert into pokedex values (0517,113,'Chansey',07,55,04,04,05,'normal','','');
+insert into pokedex values (0518,113,'Chansey',08,60,04,05,05,'normal','','');
+insert into pokedex values (0519,113,'Chansey',09,65,04,06,05,'normal','','');
+insert into pokedex values (0520,113,'Chansey',10,70,04,07,05,'normal','','');
+
+insert into pokedex values (0521,114,'Tangela',01,13,03,04,03,'planta','','');
+insert into pokedex values (0522,114,'Tangela',02,17,03,05,03,'planta','','');
+insert into pokedex values (0523,114,'Tangela',03,19,04,05,03,'planta','','');
+insert into pokedex values (0524,114,'Tangela',04,21,05,05,03,'planta','','');
+insert into pokedex values (0525,114,'Tangela',05,23,05,05,04,'planta','','');
+insert into pokedex values (0526,114,'Tangela',06,25,06,05,04,'planta','','');
+insert into pokedex values (0527,114,'Tangela',07,27,05,07,04,'planta','','');
+insert into pokedex values (0528,114,'Tangela',08,29,06,07,04,'planta','','');
+insert into pokedex values (0529,114,'Tangela',09,31,06,07,05,'planta','','');
+insert into pokedex values (0530,114,'Tangela',10,33,06,08,05,'planta','','');
+
+insert into pokedex values (0531,115,'Kangaskhan',01,16,04,04,04,'normal','','');
+insert into pokedex values (0532,115,'Kangaskhan',02,18,04,04,05,'normal','','');
+insert into pokedex values (0533,115,'Kangaskhan',03,20,04,05,05,'normal','','');
+insert into pokedex values (0534,115,'Kangaskhan',04,23,05,05,05,'normal','','');
+insert into pokedex values (0535,115,'Kangaskhan',05,26,06,05,05,'normal','','');
+insert into pokedex values (0536,115,'Kangaskhan',06,29,06,06,05,'normal','','');
+insert into pokedex values (0537,115,'Kangaskhan',07,32,07,06,05,'normal','','');
+insert into pokedex values (0538,115,'Kangaskhan',08,35,07,06,06,'normal','','');
+insert into pokedex values (0539,115,'Kangaskhan',09,38,07,06,07,'normal','','');
+insert into pokedex values (0540,115,'Kangaskhan',10,41,07,07,07,'normal','','');
+
+insert into pokedex values (0541,116,'Horsea',01,12,03,03,02,'agua','','');
+insert into pokedex values (0542,116,'Horsea',02,14,04,04,04,'agua','','');
+insert into pokedex values (0543,116,'Horsea',03,16,05,04,04,'agua','','');
+insert into pokedex values (0544,117,'Seadra',04,18,05,04,05,'agua','','');
+insert into pokedex values (0545,117,'Seadra',05,20,05,05,05,'agua','','');
+insert into pokedex values (0546,117,'Seadra',06,22,06,05,05,'agua','','');
+insert into pokedex values (0547,117,'Seadra',07,24,06,06,05,'agua','','');
+insert into pokedex values (0548,117,'Seadra',08,26,06,06,06,'agua','','');
+insert into pokedex values (0549,117,'Seadra',09,29,07,06,06,'agua','','');
+insert into pokedex values (0550,117,'Seadra',10,31,07,07,06,'agua','','');
+
+insert into pokedex values (0551,118,'Goldeen',01,12,03,03,02,'agua','','');
+insert into pokedex values (0552,118,'Goldeen',02,16,04,03,02,'agua','','');
+insert into pokedex values (0553,118,'Goldeen',03,18,04,03,03,'agua','','');
+insert into pokedex values (0554,119,'Seaking',04,21,04,03,04,'agua','','');
+insert into pokedex values (0555,119,'Seaking',05,25,05,03,04,'agua','','');
+insert into pokedex values (0556,119,'Seaking',06,28,05,04,04,'agua','','');
+insert into pokedex values (0557,119,'Seaking',07,30,05,05,05,'agua','','');
+insert into pokedex values (0558,119,'Seaking',08,33,05,06,05,'agua','','');
+insert into pokedex values (0559,119,'Seaking',09,36,06,06,05,'agua','','');
+insert into pokedex values (0560,119,'Seaking',10,36,07,06,05,'agua','','');
+
+insert into pokedex values (0561,120,'Staryu',01,10,03,03,04,'agua','','');
+insert into pokedex values (0562,120,'Staryu',02,12,03,04,05,'agua','','');
+insert into pokedex values (0563,120,'Staryu',03,14,04,04,05,'agua','','Necesita piedra agua para pasar de nivel y evolucionar.');
+insert into pokedex values (0564,121,'Starmie',04,16,04,04,06,'agua','psíquico','');
+insert into pokedex values (0565,121,'Starmie',05,18,04,05,06,'agua','psíquico','');
+insert into pokedex values (0566,121,'Starmie',06,20,05,05,06,'agua','psíquico','');
+insert into pokedex values (0567,121,'Starmie',07,23,05,06,06,'agua','psíquico','');
+insert into pokedex values (0568,121,'Starmie',08,26,06,06,06,'agua','psíquico','');
+insert into pokedex values (0569,121,'Starmie',09,29,06,06,07,'agua','psíquico','');
+insert into pokedex values (0570,121,'Starmie',10,32,07,06,08,'agua','psíquico','');
+
+insert into pokedex values (0571,122,'Mr.Mime',01,10,03,04,03,'psíquico','','');
+insert into pokedex values (0572,122,'Mr.Mime',02,12,04,04,03,'psíquico','','');
+insert into pokedex values (0573,122,'Mr.Mime',03,14,04,05,04,'psíquico','','');
+insert into pokedex values (0574,122,'Mr.Mime',04,16,04,05,05,'psíquico','','');
+insert into pokedex values (0575,122,'Mr.Mime',05,18,04,05,06,'psíquico','','');
+insert into pokedex values (0576,122,'Mr.Mime',06,20,04,06,06,'psíquico','','');
+insert into pokedex values (0577,122,'Mr.Mime',07,22,04,07,06,'psíquico','','');
+insert into pokedex values (0578,122,'Mr.Mime',08,24,05,07,06,'psíquico','','');
+insert into pokedex values (0579,122,'Mr.Mime',09,26,05,08,06,'psíquico','','');
+insert into pokedex values (0580,122,'Mr.Mime',10,28,05,08,07,'psíquico','','');
+
+insert into pokedex values (0581,123,'Scyther',01,12,04,03,04,'bicho','volador','');
+insert into pokedex values (0582,123,'Scyther',02,15,05,04,04,'bicho','volador','');
+insert into pokedex values (0583,123,'Scyther',03,17,05,04,05,'bicho','volador','');
+insert into pokedex values (0584,123,'Scyther',04,20,05,05,05,'bicho','volador','');
+insert into pokedex values (0585,123,'Scyther',05,22,06,05,05,'bicho','volador','');
+insert into pokedex values (0586,123,'Scyther',06,25,06,05,06,'bicho','volador','');
+insert into pokedex values (0587,123,'Scyther',07,27,06,06,06,'bicho','volador','');
+insert into pokedex values (0588,123,'Scyther',08,29,07,06,06,'bicho','volador','');
+insert into pokedex values (0589,123,'Scyther',09,31,07,06,07,'bicho','volador','');
+insert into pokedex values (0590,123,'Scyther',10,34,08,06,07,'bicho','volador','');
+
+insert into pokedex values (0591,124,'Jynx',01,07,04,03,03,'hielo','psíquico','');
+insert into pokedex values (0592,124,'Jynx',02,10,04,04,04,'hielo','psíquico','');
+insert into pokedex values (0593,124,'Jynx',03,13,04,04,05,'hielo','psíquico','');
+insert into pokedex values (0594,124,'Jynx',04,15,04,05,05,'hielo','psíquico','');
+insert into pokedex values (0595,124,'Jynx',05,18,05,06,06,'hielo','psíquico','');
+insert into pokedex values (0596,124,'Jynx',06,21,06,06,06,'hielo','psíquico','');
+insert into pokedex values (0597,124,'Jynx',07,24,07,06,06,'hielo','psíquico','');
+insert into pokedex values (0598,124,'Jynx',08,27,07,07,06,'hielo','psíquico','');
+insert into pokedex values (0599,124,'Jynx',09,30,07,07,07,'hielo','psíquico','');
+insert into pokedex values (0600,124,'Jynx',10,33,08,07,07,'hielo','psíquico','');
+
+insert into pokedex values (0601,125,'Electabuzz',01,07,03,03,04,'eléctrico','','');
+insert into pokedex values (0602,125,'Electabuzz',02,10,03,04,05,'eléctrico','','');
+insert into pokedex values (0603,125,'Electabuzz',03,13,04,04,05,'eléctrico','','');
+insert into pokedex values (0604,125,'Electabuzz',04,17,04,05,05,'eléctrico','','');
+insert into pokedex values (0605,125,'Electabuzz',05,19,04,06,05,'eléctrico','','');
+insert into pokedex values (0606,125,'Electabuzz',06,22,05,06,05,'eléctrico','','');
+insert into pokedex values (0607,125,'Electabuzz',07,24,05,06,06,'eléctrico','','');
+insert into pokedex values (0608,125,'Electabuzz',08,27,05,06,07,'eléctrico','','');
+insert into pokedex values (0609,125,'Electabuzz',09,30,06,06,07,'eléctrico','','');
+insert into pokedex values (0610,125,'Electabuzz',10,33,07,06,07,'eléctrico','','');
+
+insert into pokedex values (0611,126,'Magmar',01,10,04,04,03,'fuego','','');
+insert into pokedex values (0612,126,'Magmar',02,12,05,04,04,'fuego','','');
+insert into pokedex values (0613,126,'Magmar',03,15,05,05,04,'fuego','','');
+insert into pokedex values (0614,126,'Magmar',04,17,05,05,05,'fuego','','');
+insert into pokedex values (0615,126,'Magmar',05,19,06,05,05,'fuego','','');
+insert into pokedex values (0616,126,'Magmar',06,21,06,06,05,'fuego','','');
+insert into pokedex values (0617,126,'Magmar',07,24,06,06,06,'fuego','','');
+insert into pokedex values (0618,126,'Magmar',08,27,06,06,07,'fuego','','');
+insert into pokedex values (0619,126,'Magmar',09,30,06,07,07,'fuego','','');
+insert into pokedex values (0620,126,'Magmar',10,33,07,07,07,'fuego','','');
+
+insert into pokedex values (0621,127,'Pinsir',01,09,04,03,03,'bicho','','');
+insert into pokedex values (0622,127,'Pinsir',02,11,04,04,04,'bicho','','');
+insert into pokedex values (0623,127,'Pinsir',03,13,05,05,04,'bicho','','');
+insert into pokedex values (0624,127,'Pinsir',04,16,06,06,04,'bicho','','');
+insert into pokedex values (0625,127,'Pinsir',05,19,07,06,04,'bicho','','');
+insert into pokedex values (0626,127,'Pinsir',06,21,07,06,05,'bicho','','');
+insert into pokedex values (0627,127,'Pinsir',07,24,07,06,06,'bicho','','');
+insert into pokedex values (0628,127,'Pinsir',08,27,07,06,07,'bicho','','');
+insert into pokedex values (0629,127,'Pinsir',09,30,07,07,07,'bicho','','');
+insert into pokedex values (0630,127,'Pinsir',10,33,08,07,07,'bicho','','');
+
+insert into pokedex values (0631,128,'Tauros',01,12,03,02,05,'normal','','');
+insert into pokedex values (0632,128,'Tauros',02,15,03,03,05,'normal','','');
+insert into pokedex values (0633,128,'Tauros',03,18,04,04,05,'normal','','');
+insert into pokedex values (0634,128,'Tauros',04,20,05,04,05,'normal','','');
+insert into pokedex values (0635,128,'Tauros',05,22,05,05,05,'normal','','');
+insert into pokedex values (0636,128,'Tauros',06,24,05,05,06,'normal','','');
+insert into pokedex values (0637,128,'Tauros',07,27,06,05,06,'normal','','');
+insert into pokedex values (0638,128,'Tauros',08,30,06,05,07,'normal','','');
+insert into pokedex values (0639,128,'Tauros',09,33,06,05,08,'normal','','');
+insert into pokedex values (0640,128,'Tauros',10,35,07,05,08,'normal','','');
+
+insert into pokedex values (0641,129,'Magikarp',01,10,02,01,01,'agua','','');
+insert into pokedex values (0642,129,'Magikarp',02,15,03,01,01,'agua','','');
+insert into pokedex values (0643,130,'Gyarados',03,21,04,03,03,'agua','volador','');
+insert into pokedex values (0644,130,'Gyarados',04,23,05,04,03,'agua','volador','');
+insert into pokedex values (0645,130,'Gyarados',05,25,06,04,03,'agua','volador','');
+insert into pokedex values (0646,130,'Gyarados',06,27,07,05,03,'agua','volador','');
+insert into pokedex values (0647,130,'Gyarados',07,30,07,06,04,'agua','volador','');
+insert into pokedex values (0648,130,'Gyarados',08,33,08,06,04,'agua','volador','');
+insert into pokedex values (0649,130,'Gyarados',09,36,08,06,05,'agua','volador','');
+insert into pokedex values (0650,130,'Gyarados',10,39,09,07,06,'agua','volador','');
+
+insert into pokedex values (0651,131,'Lapras',01,22,02,03,03,'agua','hielo','');
+insert into pokedex values (0652,131,'Lapras',02,24,03,03,03,'agua','hielo','');
+insert into pokedex values (0653,131,'Lapras',03,26,04,04,04,'agua','hielo','');
+insert into pokedex values (0654,131,'Lapras',04,30,04,05,04,'agua','hielo','');
+insert into pokedex values (0655,131,'Lapras',05,33,05,05,04,'agua','hielo','');
+insert into pokedex values (0656,131,'Lapras',06,35,05,05,05,'agua','hielo','');
+insert into pokedex values (0657,131,'Lapras',07,38,05,05,06,'agua','hielo','');
+insert into pokedex values (0658,131,'Lapras',08,40,05,06,06,'agua','hielo','');
+insert into pokedex values (0659,131,'Lapras',09,43,06,06,06,'agua','hielo','');
+insert into pokedex values (0660,131,'Lapras',10,46,06,07,06,'agua','hielo','');
+
+insert into pokedex values (0661,132,'Ditto',01,09,02,02,03,'normal','','');
+insert into pokedex values (0662,132,'Ditto',02,10,03,03,03,'normal','','');
+insert into pokedex values (0663,132,'Ditto',03,12,04,03,03,'normal','','');
+insert into pokedex values (0664,132,'Ditto',04,14,04,04,03,'normal','','');
+insert into pokedex values (0665,132,'Ditto',05,15,04,04,04,'normal','','');
+insert into pokedex values (0666,132,'Ditto',06,18,04,05,04,'normal','','');
+insert into pokedex values (0667,132,'Ditto',07,21,05,05,04,'normal','','');
+insert into pokedex values (0668,132,'Ditto',08,24,05,05,04,'normal','','');
+insert into pokedex values (0669,132,'Ditto',09,27,05,05,05,'normal','','');
+insert into pokedex values (0670,132,'Ditto',10,30,06,06,06,'normal','','');
+
+insert into pokedex values (0671,133,'Eevee',01,10,02,03,02,'normal','','');
+insert into pokedex values (0672,133,'Eevee',02,12,03,03,02,'normal','','');
+insert into pokedex values (0673,133,'Eevee',03,15,03,03,03,'normal','','');
+insert into pokedex values (0674,134,'Vaporeon',04,24,05,05,05,'agua','','');
+insert into pokedex values (0675,134,'Vaporeon',05,27,06,05,05,'agua','','');
+insert into pokedex values (0676,134,'Vaporeon',06,31,06,06,05,'agua','','');
+insert into pokedex values (0677,134,'Vaporeon',07,36,06,06,06,'agua','','');
+insert into pokedex values (0678,134,'Vaporeon',08,40,07,06,06,'agua','','');
+insert into pokedex values (0679,134,'Vaporeon',09,44,07,07,06,'agua','','');
+insert into pokedex values (0680,134,'Vaporeon',10,46,08,07,06,'agua','','');
+
+insert into pokedex values (0681,135,'Jolteon',04,16,05,04,06,'eléctrico','','');
+insert into pokedex values (0682,135,'Jolteon',05,18,06,04,06,'eléctrico','','');
+insert into pokedex values (0683,135,'Jolteon',06,20,06,04,07,'eléctrico','','');
+insert into pokedex values (0684,135,'Jolteon',07,24,06,05,07,'eléctrico','','');
+insert into pokedex values (0685,135,'Jolteon',08,27,06,06,08,'eléctrico','','');
+insert into pokedex values (0686,135,'Jolteon',09,30,07,06,08,'eléctrico','','');
+insert into pokedex values (0687,135,'Jolteon',10,33,07,06,09,'eléctrico','','');
+
+insert into pokedex values (0688,136,'Flareon',04,16,05,04,04,'fuego','','');
+insert into pokedex values (0689,136,'Flareon',05,18,05,05,04,'fuego','','');
+insert into pokedex values (0690,136,'Flareon',06,20,06,06,05,'fuego','','');
+insert into pokedex values (0691,136,'Flareon',07,24,06,07,06,'fuego','','');
+insert into pokedex values (0692,136,'Flareon',08,27,07,07,06,'fuego','','');
+insert into pokedex values (0693,136,'Flareon',09,30,07,08,06,'fuego','','');
+insert into pokedex values (0694,136,'Flareon',10,33,08,08,06,'fuego','','');
+
+insert into pokedex values (0695,137,'Porygon',01,12,04,03,03,'normal','','');
+insert into pokedex values (0696,137,'Porygon',02,15,05,03,03,'normal','','');
+insert into pokedex values (0697,137,'Porygon',03,18,05,04,03,'normal','','');
+insert into pokedex values (0698,137,'Porygon',04,21,05,04,04,'normal','','');
+insert into pokedex values (0699,137,'Porygon',05,23,06,04,04,'normal','','');
+insert into pokedex values (0700,137,'Porygon',06,25,06,04,05,'normal','','');
+insert into pokedex values (0701,137,'Porygon',07,27,06,05,05,'normal','','');
+insert into pokedex values (0702,137,'Porygon',08,29,07,05,05,'normal','','');
+insert into pokedex values (0703,137,'Porygon',09,31,07,06,05,'normal','','');
+insert into pokedex values (0704,137,'Porygon',10,33,07,06,06,'normal','','');
+
+insert into pokedex values (0705,138,'Omanyte',01,12,04,04,04,'roca','agua','');
+insert into pokedex values (0706,138,'Omanyte',02,15,05,04,04,'roca','agua','');
+insert into pokedex values (0707,138,'Omanyte',03,18,05,04,05,'roca','agua','');
+insert into pokedex values (0708,138,'Omanyte',04,21,06,04,05,'roca','agua','');
+insert into pokedex values (0709,139,'Omastar',05,23,06,04,06,'roca','agua','');
+insert into pokedex values (0710,139,'Omastar',06,25,06,05,06,'roca','agua','');
+insert into pokedex values (0711,139,'Omastar',07,27,06,06,06,'roca','agua','');
+insert into pokedex values (0712,139,'Omastar',08,31,6,07,06,'roca','agua','');
+insert into pokedex values (0713,139,'Omastar',09,33,07,07,06,'roca','agua','');
+insert into pokedex values (0714,139,'Omastar',10,34,07,08,06,'roca','agua','');
+
+insert into pokedex values (0715,140,'Kabuto',01,12,04,03,02,'roca','agua','');
+insert into pokedex values (0716,140,'Kabuto',02,15,04,03,03,'roca','agua','');
+insert into pokedex values (0717,140,'Kabuto',03,18,04,04,04,'roca','agua','');
+insert into pokedex values (0718,140,'Kabuto',04,20,05,04,04,'roca','agua','');
+insert into pokedex values (0719,140,'Kabuto',05,22,06,04,04,'roca','agua','');
+insert into pokedex values(0720,141,'Kabutops',06,24,07,04,04,'roca','agua','');
+insert into pokedex values(0721,141,'Kabutops',07,26,07,05,04,'roca','agua','');
+insert into pokedex values(0722,141,'Kabutops',08,28,07,05,05,'roca','agua','');
+insert into pokedex values(0723,141,'Kabutops',09,30,07,06,05,'roca','agua','');
+insert into pokedex values(0724,141,'Kabutops',10,32,07,06,06,'roca','agua','');
+
+insert into pokedex values(0725,142,'Aerodactyl',01,16,03,03,04,'roca','volador','');
+insert into pokedex values(0726,142,'Aerodactyl',02,18,04,03,05,'roca','volador','');
+insert into pokedex values(0727,142,'Aerodactyl',03,20,04,04,06,'roca','volador','');
+insert into pokedex values(0728,142,'Aerodactyl',04,22,04,05,06,'roca','volador','');
+insert into pokedex values(0729,142,'Aerodactyl',05,25,05,05,06,'roca','volador','');
+insert into pokedex values(0730,142,'Aerodactyl',06,27,05,05,07,'roca','volador','');
+insert into pokedex values(0731,142,'Aerodactyl',07,30,06,05,07,'roca','volador','');
+insert into pokedex values(0732,142,'Aerodactyl',08,32,07,05,07,'roca','volador','');
+insert into pokedex values(0733,142,'Aerodactyl',09,34,07,05,08,'roca','volador','');
+insert into pokedex values(0734,142,'Aerodactyl',10,36,07,05,09,'roca','volador','');
+
+insert into pokedex values(0735,143,'Snorlax',01,20,04,04,02,'normal','','');
+insert into pokedex values(0736,143,'Snorlax',02,23,04,04,03,'normal','','');
+insert into pokedex values(0737,143,'Snorlax',03,25,05,04,03,'normal','','');
+insert into pokedex values(0738,143,'Snorlax',04,29,05,04,04,'normal','','');
+insert into pokedex values(0739,143,'Snorlax',05,33,05,05,04,'normal','','');
+insert into pokedex values(0740,143,'Snorlax',06,37,06,05,04,'normal','','');
+insert into pokedex values(0741,143,'Snorlax',07,40,07,05,04,'normal','','');
+insert into pokedex values(0742,143,'Snorlax',08,44,07,06,04,'normal','','');
+insert into pokedex values(0743,143,'Snorlax',09,48,08,06,04,'normal','','');
+insert into pokedex values(0744,143,'Snorlax',10,52,08,07,04,'normal','','');
+
+
+insert into pokedex values(0745,144,'Articuno',08,34,06,08,07,'hielo','volador','');
+insert into pokedex values(0746,144,'Articuno',09,36,07,08,07,'hielo','volador','');
+insert into pokedex values(0747,144,'Articuno',10,38,07,09,07,'hielo','volador','');
+
+insert into pokedex values(0748,145,'Zapdos',08,34,08,06,07,'eléctrico','volador','');
+insert into pokedex values(0749,145,'Zapdos',09,36,08,07,07,'eléctrico','volador','');
+insert into pokedex values(0750,145,'Zapdos',10,34,08,07,08,'eléctrico','volador','');
+
+insert into pokedex values(0751,146,'Moltres',08,34,08,06,07,'fuego','volador','');
+insert into pokedex values(0752,146,'Moltres',09,36,08,06,07,'fuego','volador','');
+insert into pokedex values(0753,146,'Moltres',10,38,09,07,07,'fuego','volador','');
+
+insert into pokedex values(0754,147,'Dratini',01,16,03,02,02,'dragón','','');
+insert into pokedex values(0755,147,'Dratini',02,18,03,02,03,'dragón','','');
+insert into pokedex values(0756,147,'Dratini',03,20,03,03,03,'dragón','','');
+insert into pokedex values (0757,148,'Dragonair',04,23,04,04,04,'dragón','','');
+insert into pokedex values (0758,148,'Dragonair',05,25,05,04,04,'dragón','','');
+insert into pokedex values (0759,149,'Dragonite',06,30,07,06,06,'dragón','volador','');
+insert into pokedex values (0760,149,'Dragonite',07,32,07,07,06,'dragón','volador','');
+insert into pokedex values (0761,149,'Dragonite',08,34,08,07,06,'dragón','volador','');
+insert into pokedex values (0762,149,'Dragonite',09,36,09,07,06,'dragón','volador','');
+insert into pokedex values (0763,149,'Dragonite',10,38,09,07,07,'dragón','volador','');
+
+insert into pokedex values (0764,150,'Mewtwo',08,37,08,07,08,'psíquico','','');
+insert into pokedex values (0765,150,'Mewtwo',09,39,09,07,08,'psíquico','','');
+insert into pokedex values (0766,150,'Mewtwo',10,41,10,07,09,'psíquico','','');
+
+insert into pokedex values (0767,151,'Mew',08,36,07,07,07,'psíquico','','');
+insert into pokedex values (0768,151,'Mew',09,38,08,08,08,'psíquico','','');
+insert into pokedex values (0769,151,'Mew',10,40,09,09,09,'psíquico','','');
