@@ -45,9 +45,10 @@ public class App extends JFrame {
 		
 		pk1.setListaMovimientos(listaMovimientos);
 		
-		System.out.println(pk1);
-		//Conexion.desConexion(conexion);
+		rellenarPA( conexion);
 		
+		System.out.println(pk1);
+
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,6 +60,36 @@ public class App extends JFrame {
 				}
 			}
 		});
+	}
+	
+public static void rellenarPA(Connection conexion) {
+		
+		if (conexion ==null) 
+			conexion= Conexion.conexion(ConstantesBD.URL, ConstantesBD.USUARIO, ConstantesBD.PASS);
+		
+		try(Statement st=conexion.createStatement();Statement st2 = conexion.createStatement();) {
+
+		int codP;
+		int codA;
+		
+		for (int i = 1; i <= 10; i++) {
+			ResultSet rs= st.executeQuery("SELECT clave FROM ataques WHERE tipo ='veneno' and clave!=0078");
+			while (rs.next()) {	
+		//		if(i<92 || i>94) {
+				codP=i;
+				codA=rs.getInt(1);
+				st2.executeUpdate("INSERT INTO pokemonataques  VALUES("+codP+","+codA+")");
+		//		}
+		}
+			System.out.println("hola");
+		}
+		
+		}catch(SQLException e){ 
+			System.out.println(e); 
+		}catch(Exception e){ 
+			System.out.println(e);
+		}
+		
 	}
 	
 	public DefaultComboBoxModel getPokemonList() throws SQLException{
