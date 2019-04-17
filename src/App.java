@@ -22,7 +22,6 @@ public class App extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
 	private static Connection conexion= null;
 
 	/**
@@ -82,45 +81,69 @@ public class App extends JFrame {
 	 */
 	public App() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 569, 425);
+		setBounds(100, 100, 516, 245);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(41, 165, 46, 14);
-		contentPane.add(lblNewLabel);
+		JLabel LabelPokemon = new JLabel("Pokemon");
+		LabelPokemon.setBounds(12, 24, 65, 14);
+		contentPane.add(LabelPokemon);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addActionListener(new ActionListener() {
+		JComboBox comboBoxPokemon = new JComboBox();
+		comboBoxPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("SELECTED: ---->" + ((String)comboBox.getSelectedItem()));
+				System.out.println("SELECTED: ---->" + ((String)comboBoxPokemon.getSelectedItem()));
 			}
 		});
 		try{
-		comboBox.setModel(getPokemonList());
+		comboBoxPokemon.setModel(getPokemonList());
 		}catch (SQLException e) {
 			// TODO: handle exception
 		}
-		comboBox.setBounds(97, 162, 76, 20);
-		contentPane.add(comboBox);
+		comboBoxPokemon.setBounds(89, 21, 105, 20);
+		contentPane.add(comboBoxPokemon);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(385, 165, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel LabelNivel = new JLabel("Nivel");
+		LabelNivel.setBounds(251, 24, 46, 14);
+		contentPane.add(LabelNivel);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(465, 162, 28, 20);
-		contentPane.add(comboBox_1);
+		JComboBox comboBoxNivel = new JComboBox();
+		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+		comboBoxNivel.setBounds(298, 20, 46, 22);
+		contentPane.add(comboBoxNivel);
 		
-		textField = new JTextField();
-		textField.setBounds(307, 162, 46, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel LabelAtaque1 = new JLabel("A\u00F1adir Ataque:");
+		LabelAtaque1.setBounds(12, 66, 94, 14);
+		contentPane.add(LabelAtaque1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(230, 165, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		JComboBox comboBoxAtaque1 = new JComboBox();
+		comboBoxAtaque1.setBounds(118, 63, 74, 20);
+		contentPane.add(comboBoxAtaque1);
+		
+		JLabel LabelAtaque2 = new JLabel("A\u00F1adir Ataque:");
+		LabelAtaque2.setBounds(12, 108, 94, 14);
+		contentPane.add(LabelAtaque2);
+		
+		JComboBox comboBoxAtaque2 = new JComboBox();
+		comboBoxAtaque2.setBounds(120, 105, 74, 20);
+		contentPane.add(comboBoxAtaque2);
+		
+		JLabel LabelAtaque3 = new JLabel("A\u00F1adir Ataque:");
+		LabelAtaque3.setBounds(251, 65, 94, 14);
+		contentPane.add(LabelAtaque3);
+		
+		JComboBox comboBoxAtaque3 = new JComboBox();
+		comboBoxAtaque3.setBounds(357, 62, 74, 20);
+		contentPane.add(comboBoxAtaque3);
+		
+		JLabel LabelAtaque4 = new JLabel("A\u00F1adir Ataque:");
+		LabelAtaque4.setBounds(251, 107, 94, 14);
+		contentPane.add(LabelAtaque4);
+		
+		JComboBox comboBoxAtaque4 = new JComboBox();
+		comboBoxAtaque4.setBounds(357, 104, 74, 20);
+		contentPane.add(comboBoxAtaque4);
 	}
 }
