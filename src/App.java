@@ -72,8 +72,8 @@ public static void rellenarPA(Connection conexion) {
 		int codP;
 		int codA;
 		
-		for (int i = 1; i <= 10; i++) {
-			ResultSet rs= st.executeQuery("SELECT clave FROM ataques WHERE tipo ='veneno' and clave!=0078");
+		for (int i = 371; i <= 380; i++) {
+			ResultSet rs= st.executeQuery("SELECT clave FROM ataques WHERE tipo ='veneno' and clave!=78");
 			while (rs.next()) {	
 		//		if(i<92 || i>94) {
 				codP=i;
@@ -81,7 +81,7 @@ public static void rellenarPA(Connection conexion) {
 				st2.executeUpdate("INSERT INTO pokemonataques  VALUES("+codP+","+codA+")");
 		//		}
 		}
-			System.out.println("hola");
+		
 		}
 		
 		}catch(SQLException e){ 

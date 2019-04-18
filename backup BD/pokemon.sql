@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2019 a las 01:59:23
+-- Tiempo de generación: 18-04-2019 a las 16:23:30
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -17,6 +17,900 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
+-- Base de datos: `america`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pais`
+--
+
+CREATE TABLE IF NOT EXISTS `pais` (
+  `Id` tinyint(4) NOT NULL,
+  `Nombre` varchar(15) DEFAULT NULL,
+  `Tamaño` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pais`
+--
+
+INSERT INTO `pais` (`Id`, `Nombre`, `Tamaño`) VALUES
+(1, 'Chile', 'Grande'),
+(2, 'Costa Rica', 'Pequeño'),
+(3, 'Mexico', 'Mediano'),
+(4, 'Venezuela', 'Mediano');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persona`
+--
+
+CREATE TABLE IF NOT EXISTS `persona` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(15) DEFAULT NULL,
+  `Apellido` varchar(15) DEFAULT NULL,
+  `Edad` tinyint(4) DEFAULT NULL,
+  `Pais` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`Id`, `Nombre`, `Apellido`, `Edad`, `Pais`) VALUES
+(1, 'Frank', 'Malfoy', 16, 1),
+(2, 'Alis', 'Rodriguez', 30, 2),
+(3, 'Karen', 'Juarez', 22, 1),
+(4, 'Andrea', 'Fernandez', 21, 3),
+(5, 'Alesa', 'Benede', 13, 4),
+(6, 'Henry', 'Gonzalez', 21, 2),
+(7, 'Daniel', 'Hidalgo', 16, 1),
+(8, 'Roy', 'Castro', 20, 4),
+(9, 'Sabrina', 'de la Torre', 18, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `personaspaises`
+--
+
+CREATE TABLE IF NOT EXISTS `personaspaises` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(15) DEFAULT NULL,
+  `apellido` varchar(15) DEFAULT NULL,
+  `edad` tinyint(4) DEFAULT NULL,
+  `nomPais` varchar(15) DEFAULT NULL,
+  `tamaño` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `personaspaises`
+--
+
+INSERT INTO `personaspaises` (`id`, `nombre`, `apellido`, `edad`, `nomPais`, `tamaño`) VALUES
+(1, 'Frank', 'Malfoy', 16, 'Chile', 'Grande'),
+(2, 'Alis', 'Rodriguez', 30, 'Costa Rica', 'Pequeño'),
+(3, 'Karen', 'Juarez', 22, 'Chile', 'Grande'),
+(4, 'Andrea', 'Fernandez', 21, 'Mexico', 'Mediano'),
+(5, 'Alesa', 'Benede', 13, 'Venezuela', 'Mediano'),
+(6, 'Henry', 'Gonzalez', 21, 'Costa Rica', 'Pequeño'),
+(7, 'Daniel', 'Hidalgo', 16, 'Chile', 'Grande'),
+(8, 'Roy', 'Castro', 20, 'Venezuela', 'Mediano'),
+(9, 'Sabrina', 'de la Torre', 18, 'Costa Rica', 'Pequeño');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `pais`
+--
+ALTER TABLE `pais`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+ ADD PRIMARY KEY (`Id`), ADD KEY `Pais` (`Pais`);
+
+--
+-- Indices de la tabla `personaspaises`
+--
+ALTER TABLE `personaspaises`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `persona`
+--
+ALTER TABLE `persona`
+ADD CONSTRAINT `persona_ibfk_1` FOREIGN KEY (`Pais`) REFERENCES `pais` (`Id`);
+
+--
+-- Filtros para la tabla `personaspaises`
+--
+ALTER TABLE `personaspaises`
+ADD CONSTRAINT `personaspaises_ibfk_1` FOREIGN KEY (`id`) REFERENCES `persona` (`Id`);
+--
+-- Base de datos: `biblioteca`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `autores`
+--
+
+CREATE TABLE IF NOT EXISTS `autores` (
+  `idAutor` int(8) NOT NULL DEFAULT '0',
+  `nomAutor` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `autores`
+--
+
+INSERT INTO `autores` (`idAutor`, `nomAutor`) VALUES
+(1, 'Daniel'),
+(2, 'David');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `libros`
+--
+
+CREATE TABLE IF NOT EXISTS `libros` (
+  `ISBN` varchar(50) NOT NULL DEFAULT '',
+  `titulo` varchar(50) DEFAULT NULL,
+  `idAutor` int(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`ISBN`, `titulo`, `idAutor`) VALUES
+('x5223', 'Guia de juego Kerbal Space Program', 1),
+('x5224', 'Montaditos un tratado sencillo', 2);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `autores`
+--
+ALTER TABLE `autores`
+ ADD PRIMARY KEY (`idAutor`);
+
+--
+-- Indices de la tabla `libros`
+--
+ALTER TABLE `libros`
+ ADD PRIMARY KEY (`ISBN`), ADD KEY `idAutor` (`idAutor`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `libros`
+--
+ALTER TABLE `libros`
+ADD CONSTRAINT `libros_ibfk_1` FOREIGN KEY (`idAutor`) REFERENCES `autores` (`idAutor`);
+--
+-- Base de datos: `cdcol`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cds`
+--
+
+CREATE TABLE IF NOT EXISTS `cds` (
+  `titel` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `interpret` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `jahr` int(11) DEFAULT NULL,
+`id` bigint(20) unsigned NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Volcado de datos para la tabla `cds`
+--
+
+INSERT INTO `cds` (`titel`, `interpret`, `jahr`, `id`) VALUES
+('Beauty', 'Ryuichi Sakamoto', 1990, 1),
+('Goodbye Country (Hello Nightclub)', 'Groove Armada', 2001, 4),
+('Glee', 'Bran Van 3000', 1997, 5);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cds`
+--
+ALTER TABLE `cds`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cds`
+--
+ALTER TABLE `cds`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;--
+-- Base de datos: `empresa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `departamentos` (
+  `dept_no` decimal(2,0) NOT NULL,
+  `dnombre` varchar(15) DEFAULT NULL,
+  `loc` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `departamentos`
+--
+
+INSERT INTO `departamentos` (`dept_no`, `dnombre`, `loc`) VALUES
+('10', 'CONTABILIDAD', 'SEVILLA'),
+('20', 'c', 's'),
+('30', 'VENTAS', 'BARCELONA'),
+('40', 'PRODUCCION', 'BILBAO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleados`
+--
+
+CREATE TABLE IF NOT EXISTS `empleados` (
+  `emp_no` decimal(4,0) NOT NULL,
+  `apellido` varchar(10) DEFAULT NULL,
+  `oficio` varchar(10) DEFAULT NULL,
+  `dir` decimal(10,0) DEFAULT NULL,
+  `fecha_alt` date DEFAULT NULL,
+  `salario` float(6,2) DEFAULT NULL,
+  `comision` float(6,2) DEFAULT NULL,
+  `dept_no` decimal(2,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`emp_no`, `apellido`, `oficio`, `dir`, `fecha_alt`, `salario`, `comision`, `dept_no`) VALUES
+('7369', 'SANCHEZ', 'EMPLEADO', '7902', '1990-12-17', 1240.00, NULL, '20'),
+('7499', 'ARROYO', 'VENDEDOR', '7698', '1990-02-20', 1500.00, 390.00, '30'),
+('7521', 'SALA', 'VENDEDOR', '7698', '1991-02-22', 1625.00, 650.00, '30'),
+('7566', 'JIMENEZ', 'DIRECTOR', '7839', '1991-04-02', 3100.00, NULL, '20'),
+('7654', 'MARTIN', 'VENDEDOR', '7698', '1991-09-29', 1600.00, 1020.00, '30'),
+('7698', 'NEGRO', 'DIRECTOR', '7839', '1991-05-01', 3005.00, NULL, '30'),
+('7782', 'CEREZO', 'DIRECTOR', '7839', '1991-06-09', 2885.00, NULL, '10'),
+('7788', 'GIL', 'ANALISTA', '7566', '1991-11-09', 3200.00, NULL, '20'),
+('7839', 'REY', 'PRESIDENTE', NULL, '1991-11-17', 4100.00, NULL, '10'),
+('7844', 'TOVAR', 'VENDEDOR', '7698', '1991-09-08', 1350.00, 0.00, '30'),
+('7876', 'ALONSO', 'EMPLEADO', '7788', '1991-09-23', 1630.00, NULL, '20'),
+('7900', 'JIMENO', 'EMPLEADO', '7698', '1991-12-03', 1335.00, NULL, '30'),
+('7901', 'LOPEZ', 'ANALISTA', '7782', '1993-02-23', 1000.00, 1000.00, '10'),
+('7902', 'FERNANDEZ', 'ANALISTA', '7566', '1991-12-03', 3200.00, NULL, '20'),
+('7934', 'MUNOZ', 'EMPLEADO', '7782', '1992-01-23', 1690.00, NULL, '10');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+ ADD PRIMARY KEY (`dept_no`);
+
+--
+-- Indices de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+ ADD PRIMARY KEY (`emp_no`), ADD KEY `FK_EMPLEADOS_DEPARTAMENTOS` (`dept_no`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `empleados`
+--
+ALTER TABLE `empleados`
+ADD CONSTRAINT `FK_EMPLEADOS_DEPARTAMENTOS` FOREIGN KEY (`dept_no`) REFERENCES `departamentos` (`dept_no`);
+--
+-- Base de datos: `instituto`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumnos`
+--
+
+CREATE TABLE IF NOT EXISTS `alumnos` (
+  `MAT` varchar(10) NOT NULL,
+  `APEL_NOM` varchar(30) DEFAULT NULL,
+  `POBLACION` varchar(15) DEFAULT NULL,
+  `TELEFONO` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `alumnos`
+--
+
+INSERT INTO `alumnos` (`MAT`, `APEL_NOM`, `POBLACION`, `TELEFONO`) VALUES
+('25889878C', 'Martinez  Lopez , Manuel', 'SEVILLA', '987755465'),
+('45665448K', 'Jimenez Choren, Mª Isabel', 'CORUÑA', '686987785'),
+('45665884R', 'Ortiz Sanchez, Mª Jose', 'VIGO', '623154687'),
+('45687998X', 'Gutierrez Gomez, Elias', 'SANTIAGO', '614658779'),
+('53259877Q', 'Diaz Fernandez, Pablo', 'MADRID', '684455664'),
+('67897546S', 'Rodriguez Alonso, Juan', 'BARCELONA', '651154465'),
+('68798545B', 'Fernandez Maria, Justo', 'MADRID', '987756654');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignaturas`
+--
+
+CREATE TABLE IF NOT EXISTS `asignaturas` (
+  `COD` tinyint(2) NOT NULL,
+  `NOMBRE` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asignaturas`
+--
+
+INSERT INTO `asignaturas` (`COD`, `NOMBRE`) VALUES
+(1, 'FOL'),
+(2, 'Sistemas Operativos'),
+(3, 'Lenguaje de Marcas'),
+(4, 'Programacion'),
+(5, 'Entornos de Desarrollo'),
+(6, 'Bases de datos');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notas`
+--
+
+CREATE TABLE IF NOT EXISTS `notas` (
+  `MAT` varchar(10) NOT NULL,
+  `COD` tinyint(2) NOT NULL DEFAULT '0',
+  `NOTA1` int(2) DEFAULT NULL,
+  `NOTA2` int(2) DEFAULT NULL,
+  `NOTA3` int(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `notas`
+--
+
+INSERT INTO `notas` (`MAT`, `COD`, `NOTA1`, `NOTA2`, `NOTA3`) VALUES
+('25889878C', 2, 6, 4, 7),
+('25889878C', 5, 5, 9, 3),
+('45665884R', 1, 8, 8, 7),
+('45665884R', 2, 8, 6, 6),
+('45665884R', 3, 3, 4, 2),
+('45687998X', 1, 6, 9, 6),
+('45687998X', 6, 4, 5, 3),
+('53259877Q', 4, 6, 6, 6),
+('53259877Q', 5, 5, 7, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notasfinales`
+--
+
+CREATE TABLE IF NOT EXISTS `notasfinales` (
+  `mat` varchar(10) NOT NULL DEFAULT '',
+  `cod` tinyint(2) NOT NULL DEFAULT '0',
+  `notaMedia` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `notasfinales`
+--
+
+INSERT INTO `notasfinales` (`mat`, `cod`, `notaMedia`) VALUES
+('25889878C', 2, 5),
+('25889878C', 5, 5),
+('45665884R', 1, 7),
+('45665884R', 2, 6),
+('45665884R', 3, 3),
+('45687998X', 1, 7),
+('45687998X', 6, 4),
+('53259877Q', 4, 6),
+('53259877Q', 5, 6);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+ ADD PRIMARY KEY (`MAT`);
+
+--
+-- Indices de la tabla `asignaturas`
+--
+ALTER TABLE `asignaturas`
+ ADD PRIMARY KEY (`COD`);
+
+--
+-- Indices de la tabla `notas`
+--
+ALTER TABLE `notas`
+ ADD PRIMARY KEY (`MAT`,`COD`), ADD KEY `COD` (`COD`);
+
+--
+-- Indices de la tabla `notasfinales`
+--
+ALTER TABLE `notasfinales`
+ ADD PRIMARY KEY (`mat`,`cod`), ADD KEY `cod` (`cod`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `notas`
+--
+ALTER TABLE `notas`
+ADD CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`MAT`) REFERENCES `alumnos` (`MAT`),
+ADD CONSTRAINT `notas_ibfk_2` FOREIGN KEY (`COD`) REFERENCES `asignaturas` (`COD`);
+
+--
+-- Filtros para la tabla `notasfinales`
+--
+ALTER TABLE `notasfinales`
+ADD CONSTRAINT `notasfinales_ibfk_1` FOREIGN KEY (`mat`) REFERENCES `alumnos` (`MAT`),
+ADD CONSTRAINT `notasfinales_ibfk_2` FOREIGN KEY (`cod`) REFERENCES `asignaturas` (`COD`);
+--
+-- Base de datos: `miprueba`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos`
+--
+
+CREATE TABLE IF NOT EXISTS `datos` (
+  `descripcion` varchar(100) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `datos`
+--
+
+INSERT INTO `datos` (`descripcion`) VALUES
+('Esto es la segunda prueba'),
+('Esto es una prueba');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `datos`
+--
+ALTER TABLE `datos`
+ ADD PRIMARY KEY (`descripcion`);
+--
+-- Base de datos: `phpmyadmin`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_bookmark`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_bookmark` (
+`id` int(11) NOT NULL,
+  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `query` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_column_info`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_column_info` (
+`id` int(5) unsigned NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
+
+--
+-- Volcado de datos para la tabla `pma_column_info`
+--
+
+INSERT INTO `pma_column_info` (`id`, `db_name`, `table_name`, `column_name`, `comment`, `mimetype`, `transformation`, `transformation_options`) VALUES
+(1, 'tienda', 'Articulos', 'ClArt', '', '', '_', ''),
+(2, 'tienda', 'Articulos', 'Nombre', '', '', '_', ''),
+(3, 'tienda', 'Articulos', 'Precio', '', '', '_', ''),
+(4, 'tienda', 'Articulos', 'ClFab', '', '', '_', ''),
+(5, 'tienda', 'Fabricantes', 'ClFab', '', '', '_', ''),
+(6, 'tienda', 'Fabricantes', 'Nombre', '', '', '_', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_designer_coords`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_designer_coords` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `x` int(11) DEFAULT NULL,
+  `y` int(11) DEFAULT NULL,
+  `v` tinyint(4) DEFAULT NULL,
+  `h` tinyint(4) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for Designer';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_history`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_history` (
+`id` bigint(20) unsigned NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sqlquery` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_navigationhiding`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_navigationhiding` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_pdf_pages`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_pdf_pages` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+`page_nr` int(10) unsigned NOT NULL,
+  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_recent`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_recent` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
+
+--
+-- Volcado de datos para la tabla `pma_recent`
+--
+
+INSERT INTO `pma_recent` (`username`, `tables`) VALUES
+('root', '[{"db":"pokemon","table":"pokemonataques"},{"db":"pokemon","table":"ataques"},{"db":"tienda","table":"fabricantes"},{"db":"tienda","table":"articulos"},{"db":"tienda","table":"Fabricantes"},{"db":"tienda","table":"Articulos"},{"db":"instituto","table":"alumnos"},{"db":"phpmyadmin","table":"pma_column_info"},{"db":"phpmyadmin","table":"pma_designer_coords"},{"db":"phpmyadmin","table":"pma_history"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_relation`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_relation` (
+  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
+
+--
+-- Volcado de datos para la tabla `pma_relation`
+--
+
+INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
+('tienda', 'articulos', 'ClFab', 'tienda', 'fabricantes', 'ClFab');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_savedsearches`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_savedsearches` (
+`id` int(5) unsigned NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_table_coords`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_table_coords` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `pdf_page_number` int(11) NOT NULL DEFAULT '0',
+  `x` float unsigned NOT NULL DEFAULT '0',
+  `y` float unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_table_info`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_table_info` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_table_uiprefs`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_table_uiprefs` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `prefs` text COLLATE utf8_bin NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_tracking`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_tracking` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `version` int(10) unsigned NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
+  `schema_sql` text COLLATE utf8_bin,
+  `data_sql` longtext COLLATE utf8_bin,
+  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
+  `tracking_active` int(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='Database changes tracking for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_userconfig`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_userconfig` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `config_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+--
+-- Volcado de datos para la tabla `pma_userconfig`
+--
+
+INSERT INTO `pma_userconfig` (`username`, `timevalue`, `config_data`) VALUES
+('root', '2019-03-25 14:38:42', '{"lang":"es","collation_connection":"utf8mb4_general_ci"}');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_usergroups`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_usergroups` (
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tab` varchar(64) COLLATE utf8_bin NOT NULL,
+  `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma_users`
+--
+
+CREATE TABLE IF NOT EXISTS `pma_users` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `pma_bookmark`
+--
+ALTER TABLE `pma_bookmark`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pma_column_info`
+--
+ALTER TABLE `pma_column_info`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Indices de la tabla `pma_designer_coords`
+--
+ALTER TABLE `pma_designer_coords`
+ ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma_history`
+--
+ALTER TABLE `pma_history`
+ ADD PRIMARY KEY (`id`), ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Indices de la tabla `pma_navigationhiding`
+--
+ALTER TABLE `pma_navigationhiding`
+ ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma_pdf_pages`
+--
+ALTER TABLE `pma_pdf_pages`
+ ADD PRIMARY KEY (`page_nr`), ADD KEY `db_name` (`db_name`);
+
+--
+-- Indices de la tabla `pma_recent`
+--
+ALTER TABLE `pma_recent`
+ ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma_relation`
+--
+ALTER TABLE `pma_relation`
+ ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`), ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Indices de la tabla `pma_savedsearches`
+--
+ALTER TABLE `pma_savedsearches`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Indices de la tabla `pma_table_coords`
+--
+ALTER TABLE `pma_table_coords`
+ ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Indices de la tabla `pma_table_info`
+--
+ALTER TABLE `pma_table_info`
+ ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma_table_uiprefs`
+--
+ALTER TABLE `pma_table_uiprefs`
+ ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma_tracking`
+--
+ALTER TABLE `pma_tracking`
+ ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Indices de la tabla `pma_userconfig`
+--
+ALTER TABLE `pma_userconfig`
+ ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma_usergroups`
+--
+ALTER TABLE `pma_usergroups`
+ ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Indices de la tabla `pma_users`
+--
+ALTER TABLE `pma_users`
+ ADD PRIMARY KEY (`username`,`usergroup`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `pma_bookmark`
+--
+ALTER TABLE `pma_bookmark`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma_column_info`
+--
+ALTER TABLE `pma_column_info`
+MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `pma_history`
+--
+ALTER TABLE `pma_history`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma_pdf_pages`
+--
+ALTER TABLE `pma_pdf_pages`
+MODIFY `page_nr` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma_savedsearches`
+--
+ALTER TABLE `pma_savedsearches`
+MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT;--
 -- Base de datos: `pokemon`
 --
 
@@ -940,6 +1834,946 @@ CREATE TABLE IF NOT EXISTS `pokemonataques` (
 --
 
 INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(221, 1),
+(222, 1),
+(223, 1),
+(224, 1),
+(225, 1),
+(226, 1),
+(227, 1),
+(228, 1),
+(229, 1),
+(230, 1),
+(251, 1),
+(252, 1),
+(253, 1),
+(254, 1),
+(255, 1),
+(256, 1),
+(257, 1),
+(258, 1),
+(259, 1),
+(260, 1),
+(291, 1),
+(292, 1),
+(293, 1),
+(294, 1),
+(295, 1),
+(296, 1),
+(297, 1),
+(298, 1),
+(299, 1),
+(300, 1),
+(321, 1),
+(322, 1),
+(323, 1),
+(324, 1),
+(325, 1),
+(326, 1),
+(327, 1),
+(328, 1),
+(329, 1),
+(330, 1),
+(361, 1),
+(362, 1),
+(363, 1),
+(364, 1),
+(365, 1),
+(366, 1),
+(367, 1),
+(368, 1),
+(369, 1),
+(370, 1),
+(21, 2),
+(22, 2),
+(23, 2),
+(24, 2),
+(25, 2),
+(26, 2),
+(27, 2),
+(28, 2),
+(29, 2),
+(30, 2),
+(221, 2),
+(222, 2),
+(223, 2),
+(224, 2),
+(225, 2),
+(226, 2),
+(227, 2),
+(228, 2),
+(229, 2),
+(230, 2),
+(251, 2),
+(252, 2),
+(253, 2),
+(254, 2),
+(255, 2),
+(256, 2),
+(257, 2),
+(258, 2),
+(259, 2),
+(260, 2),
+(291, 2),
+(292, 2),
+(293, 2),
+(294, 2),
+(295, 2),
+(296, 2),
+(297, 2),
+(298, 2),
+(299, 2),
+(300, 2),
+(321, 2),
+(322, 2),
+(323, 2),
+(324, 2),
+(325, 2),
+(326, 2),
+(327, 2),
+(328, 2),
+(329, 2),
+(330, 2),
+(361, 2),
+(362, 2),
+(363, 2),
+(364, 2),
+(365, 2),
+(366, 2),
+(367, 2),
+(368, 2),
+(369, 2),
+(370, 2),
+(21, 3),
+(22, 3),
+(23, 3),
+(24, 3),
+(25, 3),
+(26, 3),
+(27, 3),
+(28, 3),
+(29, 3),
+(30, 3),
+(221, 3),
+(222, 3),
+(223, 3),
+(224, 3),
+(225, 3),
+(226, 3),
+(227, 3),
+(228, 3),
+(229, 3),
+(230, 3),
+(251, 3),
+(252, 3),
+(253, 3),
+(254, 3),
+(255, 3),
+(256, 3),
+(257, 3),
+(258, 3),
+(259, 3),
+(260, 3),
+(291, 3),
+(292, 3),
+(293, 3),
+(294, 3),
+(295, 3),
+(296, 3),
+(297, 3),
+(298, 3),
+(299, 3),
+(300, 3),
+(321, 3),
+(322, 3),
+(323, 3),
+(324, 3),
+(325, 3),
+(326, 3),
+(327, 3),
+(328, 3),
+(329, 3),
+(330, 3),
+(361, 3),
+(362, 3),
+(363, 3),
+(364, 3),
+(365, 3),
+(366, 3),
+(367, 3),
+(368, 3),
+(369, 3),
+(370, 3),
+(21, 4),
+(22, 4),
+(23, 4),
+(24, 4),
+(25, 4),
+(26, 4),
+(27, 4),
+(28, 4),
+(29, 4),
+(30, 4),
+(221, 4),
+(222, 4),
+(223, 4),
+(224, 4),
+(225, 4),
+(226, 4),
+(227, 4),
+(228, 4),
+(229, 4),
+(230, 4),
+(251, 4),
+(252, 4),
+(253, 4),
+(254, 4),
+(255, 4),
+(256, 4),
+(257, 4),
+(258, 4),
+(259, 4),
+(260, 4),
+(291, 4),
+(292, 4),
+(293, 4),
+(294, 4),
+(295, 4),
+(296, 4),
+(297, 4),
+(298, 4),
+(299, 4),
+(300, 4),
+(321, 4),
+(322, 4),
+(323, 4),
+(324, 4),
+(325, 4),
+(326, 4),
+(327, 4),
+(328, 4),
+(329, 4),
+(330, 4),
+(361, 4),
+(362, 4),
+(363, 4),
+(364, 4),
+(365, 4),
+(366, 4),
+(367, 4),
+(368, 4),
+(369, 4),
+(370, 4),
+(21, 5),
+(22, 5),
+(23, 5),
+(24, 5),
+(25, 5),
+(26, 5),
+(27, 5),
+(28, 5),
+(29, 5),
+(30, 5),
+(221, 5),
+(222, 5),
+(223, 5),
+(224, 5),
+(225, 5),
+(226, 5),
+(227, 5),
+(228, 5),
+(229, 5),
+(230, 5),
+(251, 5),
+(252, 5),
+(253, 5),
+(254, 5),
+(255, 5),
+(256, 5),
+(257, 5),
+(258, 5),
+(259, 5),
+(260, 5),
+(291, 5),
+(292, 5),
+(293, 5),
+(294, 5),
+(295, 5),
+(296, 5),
+(297, 5),
+(298, 5),
+(299, 5),
+(300, 5),
+(321, 5),
+(322, 5),
+(323, 5),
+(324, 5),
+(325, 5),
+(326, 5),
+(327, 5),
+(328, 5),
+(329, 5),
+(330, 5),
+(361, 5),
+(362, 5),
+(363, 5),
+(364, 5),
+(365, 5),
+(366, 5),
+(367, 5),
+(368, 5),
+(369, 5),
+(370, 5),
+(31, 6),
+(32, 6),
+(33, 6),
+(34, 6),
+(35, 6),
+(36, 6),
+(37, 6),
+(38, 6),
+(39, 6),
+(40, 6),
+(41, 6),
+(42, 6),
+(43, 6),
+(44, 6),
+(45, 6),
+(46, 6),
+(47, 6),
+(48, 6),
+(49, 6),
+(50, 6),
+(181, 6),
+(182, 6),
+(183, 6),
+(184, 6),
+(185, 6),
+(186, 6),
+(187, 6),
+(188, 6),
+(189, 6),
+(190, 6),
+(191, 6),
+(192, 6),
+(193, 6),
+(194, 6),
+(195, 6),
+(196, 6),
+(197, 6),
+(198, 6),
+(199, 6),
+(200, 6),
+(31, 7),
+(32, 7),
+(33, 7),
+(34, 7),
+(35, 7),
+(36, 7),
+(37, 7),
+(38, 7),
+(39, 7),
+(40, 7),
+(41, 7),
+(42, 7),
+(43, 7),
+(44, 7),
+(45, 7),
+(46, 7),
+(47, 7),
+(48, 7),
+(49, 7),
+(50, 7),
+(181, 7),
+(182, 7),
+(183, 7),
+(184, 7),
+(185, 7),
+(186, 7),
+(187, 7),
+(188, 7),
+(189, 7),
+(190, 7),
+(191, 7),
+(192, 7),
+(193, 7),
+(194, 7),
+(195, 7),
+(196, 7),
+(197, 7),
+(198, 7),
+(199, 7),
+(200, 7),
+(31, 8),
+(32, 8),
+(33, 8),
+(34, 8),
+(35, 8),
+(36, 8),
+(37, 8),
+(38, 8),
+(39, 8),
+(40, 8),
+(41, 8),
+(42, 8),
+(43, 8),
+(44, 8),
+(45, 8),
+(46, 8),
+(47, 8),
+(48, 8),
+(49, 8),
+(50, 8),
+(181, 8),
+(182, 8),
+(183, 8),
+(184, 8),
+(185, 8),
+(186, 8),
+(187, 8),
+(188, 8),
+(189, 8),
+(190, 8),
+(191, 8),
+(192, 8),
+(193, 8),
+(194, 8),
+(195, 8),
+(196, 8),
+(197, 8),
+(198, 8),
+(199, 8),
+(200, 8),
+(31, 9),
+(32, 9),
+(33, 9),
+(34, 9),
+(35, 9),
+(36, 9),
+(37, 9),
+(38, 9),
+(39, 9),
+(40, 9),
+(41, 9),
+(42, 9),
+(43, 9),
+(44, 9),
+(45, 9),
+(46, 9),
+(47, 9),
+(48, 9),
+(49, 9),
+(50, 9),
+(181, 9),
+(182, 9),
+(183, 9),
+(184, 9),
+(185, 9),
+(186, 9),
+(187, 9),
+(188, 9),
+(189, 9),
+(190, 9),
+(191, 9),
+(192, 9),
+(193, 9),
+(194, 9),
+(195, 9),
+(196, 9),
+(197, 9),
+(198, 9),
+(199, 9),
+(200, 9),
+(81, 10),
+(82, 10),
+(83, 10),
+(84, 10),
+(85, 10),
+(86, 10),
+(87, 10),
+(88, 10),
+(89, 10),
+(90, 10),
+(91, 10),
+(92, 10),
+(93, 10),
+(94, 10),
+(95, 10),
+(96, 10),
+(97, 10),
+(98, 10),
+(99, 10),
+(100, 10),
+(331, 10),
+(332, 10),
+(333, 10),
+(334, 10),
+(335, 10),
+(336, 10),
+(337, 10),
+(338, 10),
+(339, 10),
+(340, 10),
+(81, 11),
+(82, 11),
+(83, 11),
+(84, 11),
+(85, 11),
+(86, 11),
+(87, 11),
+(88, 11),
+(89, 11),
+(90, 11),
+(91, 11),
+(92, 11),
+(93, 11),
+(94, 11),
+(95, 11),
+(96, 11),
+(97, 11),
+(98, 11),
+(99, 11),
+(100, 11),
+(331, 11),
+(332, 11),
+(333, 11),
+(334, 11),
+(335, 11),
+(336, 11),
+(337, 11),
+(338, 11),
+(339, 11),
+(340, 11),
+(81, 12),
+(82, 12),
+(83, 12),
+(84, 12),
+(85, 12),
+(86, 12),
+(87, 12),
+(88, 12),
+(89, 12),
+(90, 12),
+(91, 12),
+(92, 12),
+(93, 12),
+(94, 12),
+(95, 12),
+(96, 12),
+(97, 12),
+(98, 12),
+(99, 12),
+(100, 12),
+(81, 13),
+(82, 13),
+(83, 13),
+(84, 13),
+(85, 13),
+(86, 13),
+(87, 13),
+(88, 13),
+(89, 13),
+(90, 13),
+(91, 13),
+(92, 13),
+(93, 13),
+(94, 13),
+(95, 13),
+(96, 13),
+(97, 13),
+(98, 13),
+(99, 13),
+(100, 13),
+(331, 13),
+(332, 13),
+(333, 13),
+(334, 13),
+(335, 13),
+(336, 13),
+(337, 13),
+(338, 13),
+(339, 13),
+(340, 13),
+(81, 14),
+(82, 14),
+(83, 14),
+(84, 14),
+(85, 14),
+(86, 14),
+(87, 14),
+(88, 14),
+(89, 14),
+(90, 14),
+(91, 14),
+(92, 14),
+(93, 14),
+(94, 14),
+(95, 14),
+(96, 14),
+(97, 14),
+(98, 14),
+(99, 14),
+(100, 14),
+(331, 14),
+(332, 14),
+(333, 14),
+(334, 14),
+(335, 14),
+(336, 14),
+(337, 14),
+(338, 14),
+(339, 14),
+(340, 14),
+(11, 18),
+(12, 18),
+(13, 18),
+(14, 18),
+(15, 18),
+(16, 18),
+(17, 18),
+(18, 18),
+(19, 18),
+(20, 18),
+(141, 18),
+(142, 18),
+(143, 18),
+(144, 18),
+(145, 18),
+(146, 18),
+(147, 18),
+(148, 18),
+(149, 18),
+(150, 18),
+(241, 18),
+(242, 18),
+(243, 18),
+(244, 18),
+(245, 18),
+(246, 18),
+(247, 18),
+(248, 18),
+(249, 18),
+(250, 18),
+(311, 18),
+(312, 18),
+(313, 18),
+(314, 18),
+(315, 18),
+(316, 18),
+(317, 18),
+(318, 18),
+(319, 18),
+(320, 18),
+(11, 19),
+(12, 19),
+(13, 19),
+(14, 19),
+(15, 19),
+(16, 19),
+(17, 19),
+(18, 19),
+(19, 19),
+(20, 19),
+(141, 19),
+(142, 19),
+(143, 19),
+(144, 19),
+(145, 19),
+(146, 19),
+(147, 19),
+(148, 19),
+(149, 19),
+(150, 19),
+(241, 19),
+(242, 19),
+(243, 19),
+(244, 19),
+(245, 19),
+(246, 19),
+(247, 19),
+(248, 19),
+(249, 19),
+(250, 19),
+(311, 19),
+(312, 19),
+(313, 19),
+(314, 19),
+(315, 19),
+(316, 19),
+(317, 19),
+(318, 19),
+(319, 19),
+(320, 19),
+(11, 20),
+(12, 20),
+(13, 20),
+(14, 20),
+(15, 20),
+(16, 20),
+(17, 20),
+(18, 20),
+(19, 20),
+(20, 20),
+(141, 20),
+(142, 20),
+(143, 20),
+(144, 20),
+(145, 20),
+(146, 20),
+(147, 20),
+(148, 20),
+(149, 20),
+(150, 20),
+(241, 20),
+(242, 20),
+(243, 20),
+(244, 20),
+(245, 20),
+(246, 20),
+(247, 20),
+(248, 20),
+(249, 20),
+(250, 20),
+(311, 20),
+(312, 20),
+(313, 20),
+(314, 20),
+(315, 20),
+(316, 20),
+(317, 20),
+(318, 20),
+(319, 20),
+(320, 20),
+(11, 21),
+(12, 21),
+(13, 21),
+(14, 21),
+(15, 21),
+(16, 21),
+(17, 21),
+(18, 21),
+(19, 21),
+(20, 21),
+(141, 21),
+(142, 21),
+(143, 21),
+(144, 21),
+(145, 21),
+(146, 21),
+(147, 21),
+(148, 21),
+(149, 21),
+(150, 21),
+(241, 21),
+(242, 21),
+(243, 21),
+(244, 21),
+(245, 21),
+(246, 21),
+(247, 21),
+(248, 21),
+(249, 21),
+(250, 21),
+(311, 21),
+(312, 21),
+(313, 21),
+(314, 21),
+(315, 21),
+(316, 21),
+(317, 21),
+(318, 21),
+(319, 21),
+(320, 21),
+(11, 22),
+(12, 22),
+(13, 22),
+(14, 22),
+(15, 22),
+(16, 22),
+(17, 22),
+(18, 22),
+(19, 22),
+(20, 22),
+(361, 23),
+(362, 23),
+(363, 23),
+(364, 23),
+(365, 23),
+(366, 23),
+(367, 23),
+(368, 23),
+(369, 23),
+(370, 23),
+(256, 24),
+(257, 24),
+(258, 24),
+(259, 24),
+(260, 24),
+(361, 25),
+(362, 25),
+(363, 25),
+(364, 25),
+(365, 25),
+(366, 25),
+(367, 25),
+(368, 25),
+(369, 25),
+(370, 25),
+(361, 26),
+(362, 26),
+(363, 26),
+(364, 26),
+(365, 26),
+(366, 26),
+(367, 26),
+(368, 26),
+(369, 26),
+(370, 26),
+(361, 27),
+(362, 27),
+(363, 27),
+(364, 27),
+(365, 27),
+(366, 27),
+(367, 27),
+(368, 27),
+(369, 27),
+(370, 27),
+(231, 28),
+(232, 28),
+(233, 28),
+(234, 28),
+(235, 28),
+(236, 28),
+(237, 28),
+(238, 28),
+(239, 28),
+(240, 28),
+(256, 28),
+(257, 28),
+(258, 28),
+(259, 28),
+(260, 28),
+(271, 28),
+(272, 28),
+(273, 28),
+(274, 28),
+(275, 28),
+(276, 28),
+(277, 28),
+(278, 28),
+(279, 28),
+(280, 28),
+(231, 29),
+(232, 29),
+(233, 29),
+(234, 29),
+(235, 29),
+(236, 29),
+(237, 29),
+(238, 29),
+(239, 29),
+(240, 29),
+(256, 29),
+(257, 29),
+(258, 29),
+(259, 29),
+(260, 29),
+(271, 29),
+(272, 29),
+(273, 29),
+(274, 29),
+(275, 29),
+(276, 29),
+(277, 29),
+(278, 29),
+(279, 29),
+(280, 29),
+(231, 30),
+(232, 30),
+(233, 30),
+(234, 30),
+(235, 30),
+(236, 30),
+(237, 30),
+(238, 30),
+(239, 30),
+(240, 30),
+(256, 30),
+(257, 30),
+(258, 30),
+(259, 30),
+(260, 30),
+(271, 30),
+(272, 30),
+(273, 30),
+(274, 30),
+(275, 30),
+(276, 30),
+(277, 30),
+(278, 30),
+(279, 30),
+(280, 30),
+(231, 31),
+(232, 31),
+(233, 31),
+(234, 31),
+(235, 31),
+(236, 31),
+(237, 31),
+(238, 31),
+(239, 31),
+(240, 31),
+(256, 31),
+(257, 31),
+(258, 31),
+(259, 31),
+(260, 31),
+(271, 31),
+(272, 31),
+(273, 31),
+(274, 31),
+(275, 31),
+(276, 31),
+(277, 31),
+(278, 31),
+(279, 31),
+(280, 31),
+(231, 32),
+(232, 32),
+(233, 32),
+(234, 32),
+(235, 32),
+(236, 32),
+(237, 32),
+(238, 32),
+(239, 32),
+(240, 32),
+(256, 32),
+(257, 32),
+(258, 32),
+(259, 32),
+(260, 32),
+(271, 32),
+(272, 32),
+(273, 32),
+(274, 32),
+(275, 32),
+(276, 32),
+(277, 32),
+(278, 32),
+(279, 32),
+(280, 32),
 (1, 33),
 (2, 33),
 (3, 33),
@@ -4946,6 +6780,36 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 60),
 (9, 60),
 (10, 60),
+(171, 60),
+(172, 60),
+(173, 60),
+(174, 60),
+(175, 60),
+(176, 60),
+(177, 60),
+(178, 60),
+(179, 60),
+(180, 60),
+(181, 60),
+(182, 60),
+(183, 60),
+(184, 60),
+(185, 60),
+(186, 60),
+(187, 60),
+(188, 60),
+(189, 60),
+(190, 60),
+(281, 60),
+(282, 60),
+(283, 60),
+(284, 60),
+(285, 60),
+(286, 60),
+(287, 60),
+(288, 60),
+(289, 60),
+(290, 60),
 (1, 61),
 (2, 61),
 (3, 61),
@@ -4956,6 +6820,26 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 61),
 (9, 61),
 (10, 61),
+(171, 61),
+(172, 61),
+(173, 61),
+(174, 61),
+(175, 61),
+(176, 61),
+(177, 61),
+(178, 61),
+(179, 61),
+(180, 61),
+(281, 61),
+(282, 61),
+(283, 61),
+(284, 61),
+(285, 61),
+(286, 61),
+(287, 61),
+(288, 61),
+(289, 61),
+(290, 61),
 (1, 62),
 (2, 62),
 (3, 62),
@@ -4966,6 +6850,26 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 62),
 (9, 62),
 (10, 62),
+(171, 62),
+(172, 62),
+(173, 62),
+(174, 62),
+(175, 62),
+(176, 62),
+(177, 62),
+(178, 62),
+(179, 62),
+(180, 62),
+(281, 62),
+(282, 62),
+(283, 62),
+(284, 62),
+(285, 62),
+(286, 62),
+(287, 62),
+(288, 62),
+(289, 62),
+(290, 62),
 (1, 63),
 (2, 63),
 (3, 63),
@@ -4976,6 +6880,36 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 63),
 (9, 63),
 (10, 63),
+(171, 63),
+(172, 63),
+(173, 63),
+(174, 63),
+(175, 63),
+(176, 63),
+(177, 63),
+(178, 63),
+(179, 63),
+(180, 63),
+(181, 63),
+(182, 63),
+(183, 63),
+(184, 63),
+(185, 63),
+(186, 63),
+(187, 63),
+(188, 63),
+(189, 63),
+(190, 63),
+(281, 63),
+(282, 63),
+(283, 63),
+(284, 63),
+(285, 63),
+(286, 63),
+(287, 63),
+(288, 63),
+(289, 63),
+(290, 63),
 (1, 64),
 (2, 64),
 (3, 64),
@@ -4986,6 +6920,36 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 64),
 (9, 64),
 (10, 64),
+(171, 64),
+(172, 64),
+(173, 64),
+(174, 64),
+(175, 64),
+(176, 64),
+(177, 64),
+(178, 64),
+(179, 64),
+(180, 64),
+(181, 64),
+(182, 64),
+(183, 64),
+(184, 64),
+(185, 64),
+(186, 64),
+(187, 64),
+(188, 64),
+(189, 64),
+(190, 64),
+(281, 64),
+(282, 64),
+(283, 64),
+(284, 64),
+(285, 64),
+(286, 64),
+(287, 64),
+(288, 64),
+(289, 64),
+(290, 64),
 (2, 65),
 (3, 65),
 (4, 65),
@@ -4995,7 +6959,307 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 65),
 (9, 65),
 (10, 65),
+(171, 65),
+(172, 65),
+(173, 65),
+(174, 65),
+(175, 65),
+(176, 65),
+(177, 65),
+(178, 65),
+(179, 65),
+(180, 65),
+(181, 65),
+(182, 65),
+(183, 65),
+(184, 65),
+(185, 65),
+(186, 65),
+(187, 65),
+(188, 65),
+(189, 65),
+(190, 65),
+(281, 65),
+(282, 65),
+(283, 65),
+(284, 65),
+(285, 65),
+(286, 65),
+(287, 65),
+(288, 65),
+(289, 65),
+(290, 65),
 (1, 66),
+(261, 66),
+(262, 66),
+(263, 66),
+(264, 66),
+(265, 66),
+(266, 66),
+(267, 66),
+(268, 66),
+(269, 66),
+(270, 66),
+(321, 66),
+(322, 66),
+(323, 66),
+(324, 66),
+(325, 66),
+(326, 66),
+(327, 66),
+(328, 66),
+(329, 66),
+(330, 66),
+(261, 67),
+(262, 67),
+(263, 67),
+(264, 67),
+(265, 67),
+(266, 67),
+(267, 67),
+(268, 67),
+(269, 67),
+(270, 67),
+(261, 68),
+(262, 68),
+(263, 68),
+(264, 68),
+(265, 68),
+(266, 68),
+(267, 68),
+(268, 68),
+(269, 68),
+(270, 68),
+(321, 68),
+(322, 68),
+(323, 68),
+(324, 68),
+(325, 68),
+(326, 68),
+(327, 68),
+(328, 68),
+(329, 68),
+(330, 68),
+(261, 69),
+(262, 69),
+(263, 69),
+(264, 69),
+(265, 69),
+(266, 69),
+(267, 69),
+(268, 69),
+(269, 69),
+(270, 69),
+(261, 71),
+(262, 71),
+(263, 71),
+(264, 71),
+(265, 71),
+(266, 71),
+(267, 71),
+(268, 71),
+(269, 71),
+(270, 71),
+(321, 71),
+(322, 71),
+(323, 71),
+(324, 71),
+(325, 71),
+(326, 71),
+(327, 71),
+(328, 71),
+(329, 71),
+(330, 71),
+(261, 72),
+(262, 72),
+(263, 72),
+(264, 72),
+(265, 72),
+(266, 72),
+(267, 72),
+(268, 72),
+(269, 72),
+(270, 72),
+(301, 73),
+(302, 73),
+(303, 73),
+(304, 73),
+(305, 73),
+(306, 73),
+(307, 73),
+(308, 73),
+(309, 73),
+(310, 73),
+(301, 74),
+(302, 74),
+(303, 74),
+(304, 74),
+(305, 74),
+(306, 74),
+(307, 74),
+(308, 74),
+(309, 74),
+(310, 74),
+(101, 75),
+(102, 75),
+(103, 75),
+(104, 75),
+(105, 75),
+(106, 75),
+(107, 75),
+(108, 75),
+(109, 75),
+(110, 75),
+(116, 75),
+(117, 75),
+(118, 75),
+(119, 75),
+(120, 75),
+(126, 75),
+(127, 75),
+(128, 75),
+(129, 75),
+(130, 75),
+(201, 75),
+(202, 75),
+(203, 75),
+(204, 75),
+(205, 75),
+(206, 75),
+(207, 75),
+(208, 75),
+(209, 75),
+(210, 75),
+(301, 75),
+(302, 75),
+(303, 75),
+(304, 75),
+(305, 75),
+(306, 75),
+(307, 75),
+(308, 75),
+(309, 75),
+(310, 75),
+(101, 76),
+(102, 76),
+(103, 76),
+(104, 76),
+(105, 76),
+(106, 76),
+(107, 76),
+(108, 76),
+(109, 76),
+(110, 76),
+(116, 76),
+(117, 76),
+(118, 76),
+(119, 76),
+(120, 76),
+(126, 76),
+(127, 76),
+(128, 76),
+(129, 76),
+(130, 76),
+(201, 76),
+(202, 76),
+(203, 76),
+(204, 76),
+(205, 76),
+(206, 76),
+(207, 76),
+(208, 76),
+(209, 76),
+(210, 76),
+(301, 76),
+(302, 76),
+(303, 76),
+(304, 76),
+(305, 76),
+(306, 76),
+(307, 76),
+(308, 76),
+(309, 76),
+(310, 76),
+(101, 77),
+(102, 77),
+(103, 77),
+(104, 77),
+(105, 77),
+(106, 77),
+(107, 77),
+(108, 77),
+(109, 77),
+(110, 77),
+(116, 77),
+(117, 77),
+(118, 77),
+(119, 77),
+(120, 77),
+(126, 77),
+(127, 77),
+(128, 77),
+(129, 77),
+(130, 77),
+(201, 77),
+(202, 77),
+(203, 77),
+(204, 77),
+(205, 77),
+(206, 77),
+(207, 77),
+(208, 77),
+(209, 77),
+(210, 77),
+(301, 77),
+(302, 77),
+(303, 77),
+(304, 77),
+(305, 77),
+(306, 77),
+(307, 77),
+(308, 77),
+(309, 77),
+(310, 77),
+(41, 78),
+(42, 78),
+(43, 78),
+(44, 78),
+(45, 78),
+(46, 78),
+(47, 78),
+(48, 78),
+(49, 78),
+(50, 78),
+(81, 78),
+(82, 78),
+(83, 78),
+(84, 78),
+(85, 78),
+(86, 78),
+(87, 78),
+(88, 78),
+(89, 78),
+(90, 78),
+(111, 78),
+(112, 78),
+(113, 78),
+(114, 78),
+(115, 78),
+(116, 78),
+(117, 78),
+(118, 78),
+(119, 78),
+(120, 78),
+(121, 78),
+(122, 78),
+(123, 78),
+(124, 78),
+(125, 78),
+(126, 78),
+(127, 78),
+(128, 78),
+(129, 78),
+(130, 78),
 (1, 79),
 (2, 79),
 (3, 79),
@@ -5006,6 +7270,96 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 79),
 (9, 79),
 (10, 79),
+(81, 79),
+(82, 79),
+(83, 79),
+(84, 79),
+(85, 79),
+(86, 79),
+(87, 79),
+(88, 79),
+(89, 79),
+(90, 79),
+(111, 79),
+(112, 79),
+(113, 79),
+(114, 79),
+(115, 79),
+(116, 79),
+(117, 79),
+(118, 79),
+(119, 79),
+(120, 79),
+(121, 79),
+(122, 79),
+(123, 79),
+(124, 79),
+(125, 79),
+(126, 79),
+(127, 79),
+(128, 79),
+(129, 79),
+(130, 79),
+(161, 79),
+(162, 79),
+(163, 79),
+(164, 79),
+(165, 79),
+(166, 79),
+(167, 79),
+(168, 79),
+(169, 79),
+(170, 79),
+(171, 79),
+(172, 79),
+(173, 79),
+(174, 79),
+(175, 79),
+(176, 79),
+(177, 79),
+(178, 79),
+(179, 79),
+(180, 79),
+(191, 79),
+(192, 79),
+(193, 79),
+(194, 79),
+(195, 79),
+(196, 79),
+(197, 79),
+(198, 79),
+(199, 79),
+(200, 79),
+(281, 79),
+(282, 79),
+(283, 79),
+(284, 79),
+(285, 79),
+(286, 79),
+(287, 79),
+(288, 79),
+(289, 79),
+(290, 79),
+(291, 79),
+(292, 79),
+(293, 79),
+(294, 79),
+(295, 79),
+(296, 79),
+(297, 79),
+(298, 79),
+(299, 79),
+(300, 79),
+(371, 79),
+(372, 79),
+(373, 79),
+(374, 79),
+(375, 79),
+(376, 79),
+(377, 79),
+(378, 79),
+(379, 79),
+(380, 79),
 (1, 80),
 (2, 80),
 (3, 80),
@@ -5016,6 +7370,86 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (8, 80),
 (9, 80),
 (10, 80),
+(81, 80),
+(82, 80),
+(83, 80),
+(84, 80),
+(85, 80),
+(86, 80),
+(87, 80),
+(88, 80),
+(89, 80),
+(90, 80),
+(111, 80),
+(112, 80),
+(113, 80),
+(114, 80),
+(115, 80),
+(116, 80),
+(117, 80),
+(118, 80),
+(119, 80),
+(120, 80),
+(121, 80),
+(122, 80),
+(123, 80),
+(124, 80),
+(125, 80),
+(126, 80),
+(127, 80),
+(128, 80),
+(129, 80),
+(130, 80),
+(171, 80),
+(172, 80),
+(173, 80),
+(174, 80),
+(175, 80),
+(176, 80),
+(177, 80),
+(178, 80),
+(179, 80),
+(180, 80),
+(191, 80),
+(192, 80),
+(193, 80),
+(194, 80),
+(195, 80),
+(196, 80),
+(197, 80),
+(198, 80),
+(199, 80),
+(200, 80),
+(281, 80),
+(282, 80),
+(283, 80),
+(284, 80),
+(285, 80),
+(286, 80),
+(287, 80),
+(288, 80),
+(289, 80),
+(290, 80),
+(291, 80),
+(292, 80),
+(293, 80),
+(294, 80),
+(295, 80),
+(296, 80),
+(297, 80),
+(298, 80),
+(299, 80),
+(300, 80),
+(371, 80),
+(372, 80),
+(373, 80),
+(374, 80),
+(375, 80),
+(376, 80),
+(377, 80),
+(378, 80),
+(379, 80),
+(380, 80),
 (1, 81),
 (2, 81),
 (3, 81),
@@ -5025,7 +7459,269 @@ INSERT INTO `pokemonataques` (`clavePoke`, `claveAtaq`) VALUES
 (7, 81),
 (8, 81),
 (9, 81),
-(10, 81);
+(10, 81),
+(81, 81),
+(82, 81),
+(83, 81),
+(84, 81),
+(85, 81),
+(86, 81),
+(87, 81),
+(88, 81),
+(89, 81),
+(90, 81),
+(111, 81),
+(112, 81),
+(113, 81),
+(114, 81),
+(115, 81),
+(116, 81),
+(117, 81),
+(118, 81),
+(119, 81),
+(120, 81),
+(121, 81),
+(122, 81),
+(123, 81),
+(124, 81),
+(125, 81),
+(126, 81),
+(127, 81),
+(128, 81),
+(129, 81),
+(130, 81),
+(161, 81),
+(162, 81),
+(163, 81),
+(164, 81),
+(165, 81),
+(166, 81),
+(167, 81),
+(168, 81),
+(169, 81),
+(170, 81),
+(171, 81),
+(172, 81),
+(173, 81),
+(174, 81),
+(175, 81),
+(176, 81),
+(177, 81),
+(178, 81),
+(179, 81),
+(180, 81),
+(191, 81),
+(192, 81),
+(193, 81),
+(194, 81),
+(195, 81),
+(196, 81),
+(197, 81),
+(198, 81),
+(199, 81),
+(200, 81),
+(281, 81),
+(282, 81),
+(283, 81),
+(284, 81),
+(285, 81),
+(286, 81),
+(287, 81),
+(288, 81),
+(289, 81),
+(290, 81),
+(291, 81),
+(292, 81),
+(293, 81),
+(294, 81),
+(295, 81),
+(296, 81),
+(297, 81),
+(298, 81),
+(299, 81),
+(300, 81),
+(371, 81),
+(372, 81),
+(373, 81),
+(374, 81),
+(375, 81),
+(376, 81),
+(377, 81),
+(378, 81),
+(379, 81),
+(380, 81),
+(51, 82),
+(52, 82),
+(53, 82),
+(54, 82),
+(55, 82),
+(56, 82),
+(57, 82),
+(58, 82),
+(59, 82),
+(60, 82),
+(71, 82),
+(72, 82),
+(73, 82),
+(74, 82),
+(75, 82),
+(76, 82),
+(77, 82),
+(78, 82),
+(79, 82),
+(80, 82),
+(161, 82),
+(162, 82),
+(163, 82),
+(164, 82),
+(165, 82),
+(166, 82),
+(167, 82),
+(168, 82),
+(169, 82),
+(170, 82),
+(51, 83),
+(52, 83),
+(53, 83),
+(54, 83),
+(55, 83),
+(56, 83),
+(57, 83),
+(58, 83),
+(59, 83),
+(60, 83),
+(71, 83),
+(72, 83),
+(73, 83),
+(74, 83),
+(75, 83),
+(76, 83),
+(77, 83),
+(78, 83),
+(79, 83),
+(80, 83),
+(341, 83),
+(342, 83),
+(343, 83),
+(344, 83),
+(345, 83),
+(346, 83),
+(347, 83),
+(348, 83),
+(349, 83),
+(350, 83),
+(351, 83),
+(352, 83),
+(353, 83),
+(354, 83),
+(355, 83),
+(356, 83),
+(357, 83),
+(358, 83),
+(359, 83),
+(360, 83),
+(15, 84),
+(16, 84),
+(17, 84),
+(18, 84),
+(19, 84),
+(20, 84),
+(51, 84),
+(52, 84),
+(53, 84),
+(54, 84),
+(55, 84),
+(56, 84),
+(57, 84),
+(58, 84),
+(59, 84),
+(60, 84),
+(71, 84),
+(72, 84),
+(73, 84),
+(74, 84),
+(75, 84),
+(76, 84),
+(77, 84),
+(78, 84),
+(79, 84),
+(80, 84),
+(161, 84),
+(162, 84),
+(163, 84),
+(164, 84),
+(165, 84),
+(166, 84),
+(167, 84),
+(168, 84),
+(169, 84),
+(170, 84),
+(51, 85),
+(52, 85),
+(53, 85),
+(54, 85),
+(55, 85),
+(56, 85),
+(57, 85),
+(58, 85),
+(59, 85),
+(60, 85),
+(71, 85),
+(72, 85),
+(73, 85),
+(74, 85),
+(75, 85),
+(76, 85),
+(77, 85),
+(78, 85),
+(79, 85),
+(80, 85),
+(351, 85),
+(352, 85),
+(353, 85),
+(354, 85),
+(355, 85),
+(356, 85),
+(357, 85),
+(358, 85),
+(359, 85),
+(360, 85),
+(15, 86),
+(16, 86),
+(17, 86),
+(18, 86),
+(19, 86),
+(20, 86),
+(51, 86),
+(52, 86),
+(53, 86),
+(54, 86),
+(55, 86),
+(56, 86),
+(57, 86),
+(58, 86),
+(59, 86),
+(60, 86),
+(71, 86),
+(72, 86),
+(73, 86),
+(74, 86),
+(75, 86),
+(76, 86),
+(77, 86),
+(78, 86),
+(79, 86),
+(80, 86),
+(161, 86),
+(162, 86),
+(163, 86),
+(164, 86),
+(165, 86),
+(166, 86),
+(167, 86),
+(168, 86),
+(169, 86),
+(170, 86);
 
 --
 -- Índices para tablas volcadas
@@ -5059,6 +7755,157 @@ ALTER TABLE `pokemonataques`
 ALTER TABLE `pokemonataques`
 ADD CONSTRAINT `pokemonataques_ibfk_1` FOREIGN KEY (`clavePoke`) REFERENCES `pokedex` (`clave`),
 ADD CONSTRAINT `pokemonataques_ibfk_2` FOREIGN KEY (`claveAtaq`) REFERENCES `ataques` (`clave`);
+--
+-- Base de datos: `prueba`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tabla`
+--
+
+CREATE TABLE IF NOT EXISTS `tabla` (
+  `id` int(11) DEFAULT NULL,
+  `nombre` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tabla`
+--
+
+INSERT INTO `tabla` (`id`, `nombre`) VALUES
+(1, 'pepe'),
+(2, 'pepito'),
+(3, 'Juan');
+--
+-- Base de datos: `test`
+--
+--
+-- Base de datos: `tienda`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `artfab`
+--
+
+CREATE TABLE IF NOT EXISTS `artfab` (
+  `nombreArt` varchar(30) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `nombreFab` varchar(30) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `precio` float(6,2) DEFAULT NULL,
+  `IVA` float(6,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `articulos`
+--
+
+CREATE TABLE IF NOT EXISTS `articulos` (
+  `ClArt` int(11) NOT NULL,
+  `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `Precio` int(11) NOT NULL,
+  `ClFab` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `articulos`
+--
+
+INSERT INTO `articulos` (`ClArt`, `Nombre`, `Precio`, `ClFab`) VALUES
+(1, 'uno', 140, 10),
+(2, 'dos', 120, 20),
+(3, 'tres', 130, 30),
+(4, 'cuatro', 150, 40),
+(5, 'cinco', 160, 10),
+(6, 'seis', 170, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fabricantes`
+--
+
+CREATE TABLE IF NOT EXISTS `fabricantes` (
+  `ClFab` int(11) NOT NULL,
+  `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `fabricantes`
+--
+
+INSERT INTO `fabricantes` (`ClFab`, `Nombre`) VALUES
+(10, 'fab10'),
+(20, 'fab20'),
+(30, 'fab30'),
+(40, 'fab40');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `artfab`
+--
+ALTER TABLE `artfab`
+ ADD PRIMARY KEY (`nombreArt`,`nombreFab`);
+
+--
+-- Indices de la tabla `articulos`
+--
+ALTER TABLE `articulos`
+ ADD PRIMARY KEY (`ClArt`), ADD KEY `ClFab` (`ClFab`);
+
+--
+-- Indices de la tabla `fabricantes`
+--
+ALTER TABLE `fabricantes`
+ ADD PRIMARY KEY (`ClFab`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `articulos`
+--
+ALTER TABLE `articulos`
+ADD CONSTRAINT `fk_art_fab` FOREIGN KEY (`ClFab`) REFERENCES `fabricantes` (`ClFab`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- Base de datos: `webauth`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_pwd`
+--
+
+CREATE TABLE IF NOT EXISTS `user_pwd` (
+  `name` char(30) COLLATE latin1_general_ci NOT NULL DEFAULT '',
+  `pass` char(32) COLLATE latin1_general_ci NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Volcado de datos para la tabla `user_pwd`
+--
+
+INSERT INTO `user_pwd` (`name`, `pass`) VALUES
+('xampp', 'wampp');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `user_pwd`
+--
+ALTER TABLE `user_pwd`
+ ADD PRIMARY KEY (`name`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
