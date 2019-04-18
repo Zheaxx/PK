@@ -1,5 +1,4 @@
 use pokemon;
-drop table if exists pokemonataques;
 
 CREATE TABLE pokemonataques (
 clavePoke integer(4), 
