@@ -62,6 +62,12 @@ public class Pokemon {
 		}	
 	}
 
+	
+	
+	public Pokemon() {
+		super();
+	}
+
 	public Movimiento[] getListaMovimientos() {
 		return listaMovimientos;
 	}

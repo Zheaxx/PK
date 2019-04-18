@@ -33,21 +33,7 @@ public class App extends JFrame {
 		
 		conexion= Conexion.conexion(ConstantesBD.URL, ConstantesBD.USUARIO, ConstantesBD.PASS);
 
-		Pokemon pk1= new Pokemon(0001,conexion);
-		
-		
-		Movimiento [] listaMovimientos;
-		listaMovimientos = new Movimiento [4];
-		listaMovimientos[0]= new Movimiento(1,conexion);
-		listaMovimientos[1]= new Movimiento(2,conexion);
-		listaMovimientos[2]= new Movimiento(3,conexion);
-		listaMovimientos[3]= new Movimiento(4,conexion);
-		
-		pk1.setListaMovimientos(listaMovimientos);
-		
-		rellenarPA( conexion);
-		
-		System.out.println(pk1);
+
 
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -60,9 +46,28 @@ public class App extends JFrame {
 				}
 			}
 		});
+		
+		/*
+		Pokemon pk1= new Pokemon(0001,conexion);
+		
+		
+		Movimiento [] listaMovimientos;
+		listaMovimientos = new Movimiento [4];
+		listaMovimientos[0]= new Movimiento(1,conexion);
+		listaMovimientos[1]= new Movimiento(2,conexion);
+		listaMovimientos[2]= new Movimiento(3,conexion);
+		listaMovimientos[3]= new Movimiento(4,conexion);
+		
+		pk1.setListaMovimientos(listaMovimientos);
+		
+
+		
+		System.out.println(pk1);
+		
+		*/
 	}
 	
-public static void rellenarPA(Connection conexion) {
+	public static void rellenarPA(Connection conexion) {
 		
 		if (conexion ==null) 
 			conexion= Conexion.conexion(ConstantesBD.URL, ConstantesBD.USUARIO, ConstantesBD.PASS);
@@ -108,6 +113,32 @@ public static void rellenarPA(Connection conexion) {
 		return model;		
 	}
 
+	public DefaultComboBoxModel getnivelList(String nombre) throws SQLException{
+		DefaultComboBoxModel<Integer> model;
+		Statement st = conexion.createStatement();
+		
+		model = new DefaultComboBoxModel<Integer>();
+		
+		ResultSet rs=st.executeQuery("select distinct(nivel) from pokedex where nombre ='"+ nombre+"'");
+		
+		while(rs.next()) {
+			model.addElement(rs.getInt(1));
+		}
+	
+		
+		return model;		
+	}
+	
+	public Pokemon getPokemon(String nombre, int nivel) throws SQLException{
+		
+		Statement st = conexion.createStatement();
+		ResultSet rs=st.executeQuery("select clave from pokedex where nombre='"+nombre+"' and nivel ="+nivel+" ");
+		Pokemon pk= new Pokemon ();
+		while(rs.next()) {
+			pk =new Pokemon (rs.getInt(1),conexion);
+		}
+		return pk;
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -142,8 +173,17 @@ public static void rellenarPA(Connection conexion) {
 		contentPane.add(LabelNivel);
 		
 		JComboBox comboBoxNivel = new JComboBox();
-		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		comboBoxNivel.setBounds(298, 20, 46, 22);
+		comboBoxNivel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("SELECTED: ---->" + ((Integer)comboBoxNivel.getSelectedItem()));
+			}
+		});
+		try{
+			comboBoxNivel.setModel(getnivelList(comboBoxPokemon.getSelectedItem().toString()));
+		}catch (SQLException e) {
+			// TODO: handle exception
+		}
+		comboBoxNivel.setBounds(326, 21, 105, 20);
 		contentPane.add(comboBoxNivel);
 		
 		JLabel LabelAtaque1 = new JLabel("A\u00F1adir Ataque:");
@@ -151,7 +191,7 @@ public static void rellenarPA(Connection conexion) {
 		contentPane.add(LabelAtaque1);
 		
 		JComboBox comboBoxAtaque1 = new JComboBox();
-		comboBoxAtaque1.setBounds(118, 63, 74, 20);
+		comboBoxAtaque1.setBounds(120, 63, 74, 20);
 		contentPane.add(comboBoxAtaque1);
 		
 		JLabel LabelAtaque2 = new JLabel("A\u00F1adir Ataque:");
@@ -179,6 +219,17 @@ public static void rellenarPA(Connection conexion) {
 		contentPane.add(comboBoxAtaque4);
 		
 		JButton btnNewButton = new JButton("A\u00F1adir Pokemon");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {				
+					System.out.println(getPokemon((String)comboBoxPokemon.getSelectedItem(),
+										(Integer)comboBoxNivel.getSelectedItem()) ) ;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setBounds(185, 152, 133, 33);
 		contentPane.add(btnNewButton);
 	}
