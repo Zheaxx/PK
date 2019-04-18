@@ -72,8 +72,8 @@ public static void rellenarPA(Connection conexion) {
 		int codP;
 		int codA;
 		
-		for (int i = 371; i <= 380; i++) {
-			ResultSet rs= st.executeQuery("SELECT clave FROM ataques WHERE tipo ='veneno' and clave!=78");
+		for (int i = 764; i <= 769; i++) {
+			ResultSet rs= st.executeQuery("SELECT clave FROM ataques WHERE tipo ='psiquico' ");
 			while (rs.next()) {	
 		//		if(i<92 || i>94) {
 				codP=i;
