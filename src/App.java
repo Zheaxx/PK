@@ -154,10 +154,28 @@ public class App extends JFrame {
 		LabelPokemon.setBounds(12, 24, 65, 14);
 		contentPane.add(LabelPokemon);
 		
+		JComboBox comboBoxNivel = new JComboBox();
+		comboBoxNivel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("SELECTED: ---->" + ((Integer)comboBoxNivel.getSelectedItem()));
+		
+			}
+		});
+		
+		comboBoxNivel.setBounds(326, 21, 105, 20);
+		contentPane.add(comboBoxNivel);
+		
+		
 		JComboBox comboBoxPokemon = new JComboBox();
 		comboBoxPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("SELECTED: ---->" + ((String)comboBoxPokemon.getSelectedItem()));
+				try{
+					if(comboBoxNivel != null)
+					comboBoxNivel.setModel(getnivelList(comboBoxPokemon.getSelectedItem().toString()));
+				}catch (SQLException e) {
+					// TODO: handle exception
+				}
 			}
 		});
 		try{
@@ -172,20 +190,7 @@ public class App extends JFrame {
 		LabelNivel.setBounds(251, 24, 46, 14);
 		contentPane.add(LabelNivel);
 		
-		JComboBox comboBoxNivel = new JComboBox();
-		comboBoxNivel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("SELECTED: ---->" + ((Integer)comboBoxNivel.getSelectedItem()));
-			}
-		});
-		try{
-			comboBoxNivel.setModel(getnivelList(comboBoxPokemon.getSelectedItem().toString()));
-		}catch (SQLException e) {
-			// TODO: handle exception
-		}
-		comboBoxNivel.setBounds(326, 21, 105, 20);
-		contentPane.add(comboBoxNivel);
-		
+
 		JLabel LabelAtaque1 = new JLabel("A\u00F1adir Ataque:");
 		LabelAtaque1.setBounds(12, 66, 94, 14);
 		contentPane.add(LabelAtaque1);
