@@ -11,6 +11,9 @@ public class Movimiento {
 	private String notas;
 	
 	
+	public Movimiento() {
+		
+	}
 	public Movimiento(int clave, String tipo, String nombre, int impactar, int daño, int requisitos, String notas) {
 		super();
 		this.clave = clave;
@@ -48,6 +51,9 @@ public class Movimiento {
 	@Override
 	public String toString() {
 		return "Movimiento [clave=" + clave + ", tipo=" + tipo + ", nombre=" + nombre + "]";
+	}
+	public String getNombre() {
+		return nombre;
 	}
 	
 	
