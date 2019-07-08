@@ -157,7 +157,7 @@ public class App extends JFrame {
 	 */
 	public App() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 690, 531);
+		setBounds(100, 100, 580, 398);
 		setTitle("POKEBUILDER v1.0");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -245,6 +245,7 @@ public class App extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 			}
 		});
 		btnNewButton.setBounds(251, 208, 133, 33);
